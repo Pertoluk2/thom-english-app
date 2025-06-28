@@ -1,5 +1,4 @@
 // Lijst met woorden. Je kunt hier eenvoudig meer woorden toevoegen!
-// Lijst met woorden, bijgewerkt op basis van de foto's uit het lesboek.
 const wordList = [
     // === Algemene Woorden ===
     { vietnamese: "Xin chào", english: "Hello" },
@@ -77,14 +76,33 @@ const wordList = [
     { vietnamese: "Chương trình", english: "Show" }
 ];
 
-// Variabelen om de huidige staat bij te houden
+// --- NIEUWE CODE HIERONDER ---
+
+let shuffledWordList = [];
 let currentWordIndex = 0;
-let isAnswered = false; 
+let isAnswered = false;
 
 // Verwijzingen naar de HTML-elementen
 const vietnameseWordEl = document.getElementById('vietnamese-word');
 const optionsContainerEl = document.getElementById('options-container');
 const feedbackTextEl = document.getElementById('feedback-text');
+
+// Een standaard 'shuffle' functie om de volgorde willekeurig te maken
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+// Functie om een nieuwe ronde te starten met een geschudde lijst
+function startNewRound() {
+    // Maak een kopie van de master-lijst en schud deze
+    shuffledWordList = [...wordList];
+    shuffleArray(shuffledWordList);
+    currentWordIndex = 0;
+    loadQuestion();
+}
 
 // Functie om de audio-uitspraak af te spelen
 function speak(text) {
@@ -101,13 +119,15 @@ function speak(text) {
 // Functie om de volgende vraag te laden
 function loadQuestion() {
     isAnswered = false;
-    const currentWord = wordList[currentWordIndex];
+    // Gebruik nu de geschudde lijst
+    const currentWord = shuffledWordList[currentWordIndex];
 
     vietnameseWordEl.textContent = currentWord.vietnamese;
     feedbackTextEl.textContent = "";
     optionsContainerEl.innerHTML = "";
 
     const options = [currentWord.english];
+    // De foute antwoorden kunnen we nog steeds willekeurig uit de originele lijst pakken
     while (options.length < 4) {
         const randomWord = wordList[Math.floor(Math.random() * wordList.length)].english;
         if (!options.includes(randomWord)) {
@@ -131,27 +151,30 @@ function checkAnswer(selectedOption, button) {
     if (isAnswered) return;
     isAnswered = true;
 
-    const correctOption = wordList[currentWordIndex].english;
+    // Haal het juiste antwoord uit de geschudde lijst
+    const correctOption = shuffledWordList[currentWordIndex].english;
 
     if (selectedOption === correctOption) {
-        feedbackTextEl.textContent = "Chính xác! Làm tốt lắm!"; // Vertaalde feedback
-        feedbackTextEl.style.color = "#ec407a"; // Roze tekst
+        feedbackTextEl.textContent = "Chính xác! Làm tốt lắm!";
+        feedbackTextEl.style.color = "#ec407a";
         button.classList.add('correct');
         
         speak(correctOption);
 
         setTimeout(() => {
             currentWordIndex++;
-            if (currentWordIndex >= wordList.length) {
-                currentWordIndex = 0;
-                alert("Tuyệt vời! Bạn đã hoàn thành tất cả các từ. Chúng ta bắt đầu lại nhé."); // Vertaalde alert
+            // Controleer of we aan het einde van de geschudde lijst zijn
+            if (currentWordIndex >= shuffledWordList.length) {
+                alert("Tuyệt vời! Bạn đã hoàn thành tất cả các từ. Chúng ta bắt đầu lại với een nieuwe willekeurige volgorde.");
+                startNewRound(); // Start een nieuwe ronde, die de lijst opnieuw schudt
+            } else {
+                loadQuestion(); // Laad gewoon het volgende woord
             }
-            loadQuestion();
         }, 2000);
 
     } else {
-        feedbackTextEl.textContent = "Không đúng, thử lại nhé."; // Vertaalde feedback
-        feedbackTextEl.style.color = "#757575"; // Grijze tekst
+        feedbackTextEl.textContent = "Không đúng, thử lại nhé.";
+        feedbackTextEl.style.color = "#757575";
         button.classList.add('incorrect');
 
         setTimeout(() => {
@@ -162,5 +185,5 @@ function checkAnswer(selectedOption, button) {
     }
 }
 
-// Start de app als de pagina geladen is
-document.addEventListener('DOMContentLoaded', loadQuestion);
+// Start de app door een nieuwe, willekeurige ronde te beginnen
+document.addEventListener('DOMContentLoaded', startNewRound);
