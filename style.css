@@ -72,3 +72,12 @@ h1 {
     color: #555 !important;
     border-color: #bdbdbd !important;
 }
+
+/* Stijl voor de persoonlijke begroeting */
+#greeting-text {
+    font-size: 1.4em; /* Iets kleiner dan de hoofdtitel */
+    font-weight: normal; /* Normale dikte */
+    color: #ec407a; /* Een mooie roze kleur uit het thema */
+    margin-top: -15px; /* Iets dichter bij de hoofdtitel */
+    margin-bottom: 25px;
+}
