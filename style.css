@@ -1,0 +1,74 @@
+/* Algemene stijlen */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fce4ec; /* Lichtroze achtergrond */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#app-container {
+    background-color: white; /* Witte container */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+}
+
+h1 {
+    color: #ad1457; /* Donkerroze voor de titel */
+}
+
+/* Vraag- en feedbackstijlen */
+#vietnamese-word {
+    font-size: 2em;
+    font-weight: bold;
+    color: #d81b60; /* Medium roze */
+    margin-bottom: 20px;
+}
+
+#feedback-text {
+    font-size: 1.2em;
+    min-height: 25px; 
+}
+
+/* Knoppen voor meerkeuze */
+#options-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.option-btn {
+    padding: 15px;
+    font-size: 1.2em;
+    border: 2px solid #f8bbd0; /* Lichtroze rand */
+    border-radius: 10px;
+    background-color: #ffffff; /* Witte knop */
+    color: #444; /* Donkergrijze tekst voor leesbaarheid */
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.option-btn:hover {
+    background-color: #fce4ec; /* Lichtroze gloed bij hover */
+    border-color: #f06292;
+}
+
+/* Stijlen voor juiste en foute antwoorden */
+.correct {
+    background-color: #ec407a !important; /* Levendig roze voor 'juist' */
+    color: white !important;
+    border-color: #ad1457 !important;
+}
+
+.incorrect {
+    background-color: #e0e0e0 !important; /* Neutraal grijs voor 'fout' */
+    color: #555 !important;
+    border-color: #bdbdbd !important;
+}

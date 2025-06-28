@@ -1,0 +1,21 @@
+{
+  "name": "Học tiếng Anh cùng Thom",
+  "short_name": "Học Anh",
+  "description": "Một ứng dụng đơn giản để giúp Thom học từ vựng tiếng Anh.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#fce4ec",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
