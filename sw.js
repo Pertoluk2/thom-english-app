@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hoc-tieng-anh-cache-v3';
+const CACHE_NAME = 'hoc-tieng-anh-cache-v4';
 const urlsToCache = [
   '/',
   'index.html',
