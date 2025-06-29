@@ -1,5 +1,5 @@
-// Versie verhoogd naar v10 en paden zijn nu relatief
-const CACHE_NAME = 'hoc-tieng-anh-cache-v10'; 
+// Versie verhoogd naar v11
+const CACHE_NAME = 'hoc-tieng-anh-cache-v11'; 
 const urlsToCache = [
   './',
   './index.html',
@@ -14,7 +14,7 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache with relative paths');
+        console.log('Opened cache v11');
         return cache.addAll(urlsToCache);
       })
   );
@@ -24,15 +24,11 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
+        return response || fetch(event.request);
       })
   );
 });
 
-// Voeg een 'activate' event toe om oude caches op te ruimen
 self.addEventListener('activate', event => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
