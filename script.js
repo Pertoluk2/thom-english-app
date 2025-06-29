@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-// --- DATA ---
-const wordList = [
+    // ===================================================================
+    // --- DATA (Woorden en Zinnen) ---
+    // ===================================================================
+
+    const wordList = [
     // === Gevoelens & Emoties ===
     { vietnamese: "Hạnh phúc", english: "Happy" },
     { vietnamese: "Buồn", english: "Sad" },
@@ -164,7 +167,11 @@ const wordList = [
 	
     ];
 
-    // --- ALGEMEEN & MENU ---
+  
+    // ===================================================================
+    // --- ALGEMEEN & MENU LOGICA ---
+    // ===================================================================
+
     const mainMenu = document.getElementById('main-menu');
     const wordsGameContainer = document.getElementById('words-game-container');
     const sentenceGameContainer = document.getElementById('sentence-game-container');
@@ -199,85 +206,84 @@ const wordList = [
         }
     }
 
+    // ===================================================================
     // --- WOORDENSPEL LOGICA ---
+    // ===================================================================
+
     let shuffledWordList = [];
     let currentWordIndex = 0;
-    
+    let wordGameIsAnswered = false;
+    const vietnameseWordEl = document.getElementById('vietnamese-word');
+    const optionsContainerEl = document.getElementById('options-container');
+    const feedbackTextEl = document.getElementById('feedback-text');
+
     function startWordsGame() {
         shuffledWordList = [...wordList].sort(() => 0.5 - Math.random());
         currentWordIndex = 0;
         loadWordQuestion();
     }
-    
+
     function loadWordQuestion() {
-       isAnswered = false;
-    const currentWord = shuffledWordList[currentWordIndex];
+        wordGameIsAnswered = false;
+        const currentWord = shuffledWordList[currentWordIndex];
+        vietnameseWordEl.textContent = currentWord.vietnamese;
+        feedbackTextEl.textContent = "";
+        optionsContainerEl.innerHTML = "";
 
-    vietnameseWordEl.textContent = currentWord.vietnamese;
-    feedbackTextEl.textContent = "";
-    optionsContainerEl.innerHTML = "";
+        const options = [currentWord.english];
+        while (options.length < 4) {
+            const randomWord = wordList[Math.floor(Math.random() * wordList.length)].english;
+            if (!options.includes(randomWord)) {
+                options.push(randomWord);
+            }
+        }
+        options.sort(() => 0.5 - Math.random());
 
-    const options = [currentWord.english];
-    while (options.length < 4) {
-        const randomWord = wordList[Math.floor(Math.random() * wordList.length)].english;
-        if (!options.includes(randomWord)) {
-            options.push(randomWord);
+        options.forEach(option => {
+            const button = document.createElement('button');
+            button.textContent = option;
+            button.classList.add('option-btn');
+            button.addEventListener('click', () => checkWordAnswer(option, button));
+            optionsContainerEl.appendChild(button);
+        });
+    }
+
+    function checkWordAnswer(selectedOption, button) {
+        if (wordGameIsAnswered) return;
+        wordGameIsAnswered = true;
+        const correctOption = shuffledWordList[currentWordIndex].english;
+
+        if (selectedOption === correctOption) {
+            feedbackTextEl.textContent = "Chính xác!";
+            feedbackTextEl.className = 'correct';
+            button.classList.add('correct');
+            speak(correctOption);
+            setTimeout(() => {
+                currentWordIndex++;
+                if (currentWordIndex >= shuffledWordList.length) {
+                    alert("Tuyệt vời! Hiệp tiếp theo!");
+                    startWordsGame();
+                } else {
+                    loadWordQuestion();
+                }
+            }, 1500);
+        } else {
+            feedbackTextEl.textContent = "Không đúng, thử lại nhé.";
+            feedbackTextEl.className = 'incorrect';
+            button.classList.add('incorrect');
+            setTimeout(() => {
+                wordGameIsAnswered = false;
+                button.classList.remove('incorrect');
+                feedbackTextEl.textContent = "";
+            }, 1500);
         }
     }
 
-    options.sort(() => Math.random() - 0.5);
 
-    options.forEach(option => {
-        const button = document.createElement('button');
-        button.textContent = option;
-        button.classList.add('option-btn');
-        button.addEventListener('click', () => checkAnswer(option, button));
-        optionsContainerEl.appendChild(button);
-    });
-}
-
-    function checkWordAnswer(selectedOption, button) {
-       if (isAnswered) return;
-    isAnswered = true;
-
-    const correctOption = shuffledWordList[currentWordIndex].english;
-
-    if (selectedOption === correctOption) {
-        feedbackTextEl.textContent = "Chính xác! Làm tốt lắm!";
-        feedbackTextEl.style.color = "#ec407a";
-        button.classList.add('correct');
-        
-        speak(correctOption);
-
-        setTimeout(() => {
-            currentWordIndex++;
-            if (currentWordIndex >= shuffledWordList.length) {
-                alert("Tuyệt vời! Bạn đã hoàn thành tất cả các từ. Chúng ta bắt đầu lại với een nieuwe willekeurige volgorde.");
-                startNewRound();
-            } else {
-                loadQuestion();
-            }
-        }, 2000);
-
-    } else {
-        feedbackTextEl.textContent = "Không đúng, thử lại nhé.";
-        feedbackTextEl.style.color = "#757575";
-        button.classList.add('incorrect');
-
-        setTimeout(() => {
-           isAnswered = false;
-           button.classList.remove('incorrect');
-           feedbackTextEl.textContent = "";
-        }, 1500);
-    }
-}
-
-    
-    // (Plaats hier de functies `loadQuestion` en `checkAnswer` van het woordenspel)
-    // Dit deel laat ik hier even weg om het antwoord beknopt te houden, 
-    // maar je moet je vorige `loadQuestion` en `checkAnswer` hier kopiëren.
-
+    // ===================================================================
     // --- ZINNENSPEL LOGICA ---
+    // ===================================================================
+    
     let currentSentence = "";
     const answerArea = document.getElementById('sentence-answer-area');
     const scrambleArea = document.getElementById('sentence-scramble-area');
@@ -288,12 +294,13 @@ const wordList = [
     function startSentenceGame() {
         nextSentenceBtn.classList.add('hidden');
         checkSentenceBtn.classList.remove('hidden');
+        checkSentenceBtn.disabled = false;
         loadSentenceQuestion();
     }
 
     function loadSentenceQuestion() {
         currentSentence = sentenceList[Math.floor(Math.random() * sentenceList.length)];
-        let words = currentSentence.replace('.', '').split(' ');
+        let words = currentSentence.replace(/[.?]/g, '').split(' ');
         words.sort(() => 0.5 - Math.random());
 
         answerArea.innerHTML = '';
@@ -301,6 +308,7 @@ const wordList = [
         sentenceFeedback.textContent = '';
         
         words.forEach(word => {
+            if (word === "") return;
             const chip = document.createElement('span');
             chip.textContent = word;
             chip.className = 'word-chip';
@@ -321,14 +329,15 @@ const wordList = [
     checkSentenceBtn.addEventListener('click', () => {
         let userAnswer = [];
         answerArea.querySelectorAll('.word-chip').forEach(chip => userAnswer.push(chip.textContent));
-        const finalAnswer = userAnswer.join(' ').replace('.', '');
-        const correctAnswer = currentSentence.replace('.', '');
+        const finalAnswer = userAnswer.join(' ');
+        const correctAnswer = currentSentence.replace(/[.?]/g, '');
 
         if (finalAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
             sentenceFeedback.textContent = "Chính xác!";
             sentenceFeedback.className = 'feedback correct';
             speak(currentSentence);
             checkSentenceBtn.classList.add('hidden');
+            checkSentenceBtn.disabled = true;
             nextSentenceBtn.classList.remove('hidden');
         } else {
             sentenceFeedback.textContent = "Không đúng, thử lại nhé.";
