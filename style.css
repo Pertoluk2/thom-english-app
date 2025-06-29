@@ -1,7 +1,7 @@
 /* Algemene stijlen */
 body {
     font-family: Arial, sans-serif;
-    background-color: #fce4ec; /* Lichtroze achtergrond */
+    background-color: #fce4ec;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,74 +10,145 @@ body {
 }
 
 #app-container {
-    background-color: white; /* Witte container */
+    background-color: white;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     text-align: center;
     width: 90%;
     max-width: 500px;
+    position: relative;
 }
 
-h1 {
-    color: #ad1457; /* Donkerroze voor de titel */
+/* Hulpklassen */
+.hidden {
+    display: none !important;
 }
 
-/* Vraag- en feedbackstijlen */
+/* Hoofdmenu Stijlen */
+#main-menu h1, #words-game-container h1, #sentence-game-container h1 {
+    color: #ad1457;
+}
+#greeting-text {
+    font-size: 1.4em;
+    font-weight: normal;
+    color: #ec407a;
+    margin-top: -15px;
+    margin-bottom: 25px;
+}
+.menu-btn {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    background-color: #ec407a;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.menu-btn:hover {
+    background-color: #ad1457;
+}
+
+/* Algemene Spel Stijlen */
+.game-view p {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+.back-to-menu {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.back-to-menu::before {
+    content: '←';
+}
+
+/* Woordenspel Stijlen */
 #vietnamese-word {
     font-size: 2em;
     font-weight: bold;
-    color: #d81b60; /* Medium roze */
+    color: #d81b60;
     margin-bottom: 20px;
 }
-
-#feedback-text {
-    font-size: 1.2em;
-    min-height: 25px; 
-}
-
-/* Knoppen voor meerkeuze */
 #options-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
     margin-top: 20px;
 }
-
 .option-btn {
     padding: 15px;
     font-size: 1.2em;
-    border: 2px solid #f8bbd0; /* Lichtroze rand */
+    border: 2px solid #f8bbd0;
     border-radius: 10px;
-    background-color: #ffffff; /* Witte knop */
-    color: #444; /* Donkergrijze tekst voor leesbaarheid */
+    background-color: #ffffff;
+    color: #444;
     cursor: pointer;
     transition: all 0.3s;
 }
-
 .option-btn:hover {
-    background-color: #fce4ec; /* Lichtroze gloed bij hover */
+    background-color: #fce4ec;
     border-color: #f06292;
 }
 
-/* Stijlen voor juiste en foute antwoorden */
-.correct {
-    background-color: #ec407a !important; /* Levendig roze voor 'juist' */
-    color: white !important;
-    border-color: #ad1457 !important;
+/* Zinnenspel Stijlen */
+.drop-area, .word-bank {
+    min-height: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-content: flex-start;
+}
+.drop-area {
+    background-color: #e3f2fd;
+    border: 2px dashed #90caf9;
+}
+.word-bank {
+    background-color: #fce4ec;
+    border: 2px dashed #f8bbd0;
+}
+.word-chip {
+    padding: 10px 15px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1.1em;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.2s;
+}
+#check-sentence-btn, #next-sentence-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    margin-top: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.feedback {
+    font-size: 1.2em;
+    min-height: 25px;
 }
 
-.incorrect {
-    background-color: #e0e0e0 !important; /* Neutraal grijs voor 'fout' */
-    color: #555 !important;
-    border-color: #bdbdbd !important;
-}
-
-/* Stijl voor de persoonlijke begroeting */
-#greeting-text {
-    font-size: 1.4em; /* Iets kleiner dan de hoofdtitel */
-    font-weight: normal; /* Normale dikte */
-    color: #ec407a; /* Een mooie roze kleur uit het thema */
-    margin-top: -15px; /* Iets dichter bij de hoofdtitel */
-    margin-bottom: 25px;
-}
+/* Correct/Incorrect Stijlen */
+.correct { background-color: #4caf50 !important; color: white !important; }
+.incorrect { background-color: #f44336 !important; color: white !important; }
+#feedback-text.correct, #sentence-feedback-text.correct { color: #4caf50; }
+#feedback-text.incorrect, #sentence-feedback-text.incorrect { color: #f44336; }

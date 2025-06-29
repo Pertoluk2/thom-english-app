@@ -1,4 +1,6 @@
-// Lijst met woorden, bijgewerkt op basis van de foto's en het PDF-lesboek.
+document.addEventListener('DOMContentLoaded', () => {
+
+// --- DATA ---
 const wordList = [
     // === Gevoelens & Emoties ===
     { vietnamese: "Hạnh phúc", english: "Happy" },
@@ -134,43 +136,81 @@ const wordList = [
 ];
 
 
-// --- De rest van de code blijft ongewijzigd ---
+ const sentenceList = [
+        "The girl is pretty.",
+        "My new friends are nice and funny.",
+        "My favourite fruit is the banana.",
+        "That person works with my brother.",
+        "G-Dragon is a handsome rapper and singer.",
+        "You stepped on my feet.",
+        "The box is on top of the rock.",
+        "My mom wants to go to the shop.",
+        "The doctor has got a lot of hot coffee.",
+        "I am sorry I lost your watch."
+	"You look pretty good today!"
+	"Please, take a seat."
+	"What do you mean?"
+	"He eats like a pig."
+	"Can you speak Vietnamese?"
+	"Can you move to another group?"
+	"I am into blues shoes."
+	"Everyone, listen to me and repeat."
+	"Jack is having an apple for his snack."
+	"That Person works with my brother."
+	"The  man plans to take his exam on Wednesday."
+	"Hey Matt? Are you having fun? - No, I'm very sad."
+	"I am the number one fan of the show, Big Bang."
+	"Ouch, you stepped on my feet. It hurts."
+	
+    ];
 
-let shuffledWordList = [];
-let currentWordIndex = 0;
-let isAnswered = false;
+    // --- ALGEMEEN & MENU ---
+    const mainMenu = document.getElementById('main-menu');
+    const wordsGameContainer = document.getElementById('words-game-container');
+    const sentenceGameContainer = document.getElementById('sentence-game-container');
 
-const vietnameseWordEl = document.getElementById('vietnamese-word');
-const optionsContainerEl = document.getElementById('options-container');
-const feedbackTextEl = document.getElementById('feedback-text');
+    document.getElementById('start-words-btn').addEventListener('click', () => showGame('words'));
+    document.getElementById('start-sentences-btn').addEventListener('click', () => showGame('sentences'));
+    document.querySelectorAll('.back-to-menu').forEach(btn => btn.addEventListener('click', showMenu));
 
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+    function showGame(gameType) {
+        mainMenu.classList.add('hidden');
+        if (gameType === 'words') {
+            wordsGameContainer.classList.remove('hidden');
+            startWordsGame();
+        } else if (gameType === 'sentences') {
+            sentenceGameContainer.classList.remove('hidden');
+            startSentenceGame();
+        }
     }
-}
 
-function startNewRound() {
-    shuffledWordList = [...wordList];
-    shuffleArray(shuffledWordList);
-    currentWordIndex = 0;
-    loadQuestion();
-}
-
-function speak(text) {
-    if ('speechSynthesis' in window) {
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'en-US';
-        utterance.rate = 0.9;
-        window.speechSynthesis.speak(utterance);
-    } else {
-        console.log("Sorry, je browser ondersteunt geen tekst-naar-spraak.");
+    function showMenu() {
+        wordsGameContainer.classList.add('hidden');
+        sentenceGameContainer.classList.add('hidden');
+        mainMenu.classList.remove('hidden');
     }
-}
 
-function loadQuestion() {
-    isAnswered = false;
+    function speak(text) {
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+
+    // --- WOORDENSPEL LOGICA ---
+    let shuffledWordList = [];
+    let currentWordIndex = 0;
+    
+    function startWordsGame() {
+        shuffledWordList = [...wordList].sort(() => 0.5 - Math.random());
+        currentWordIndex = 0;
+        loadWordQuestion();
+    }
+    
+    function loadWordQuestion() {
+       isAnswered = false;
     const currentWord = shuffledWordList[currentWordIndex];
 
     vietnameseWordEl.textContent = currentWord.vietnamese;
@@ -196,8 +236,8 @@ function loadQuestion() {
     });
 }
 
-function checkAnswer(selectedOption, button) {
-    if (isAnswered) return;
+    function checkWordAnswer(selectedOption, button) {
+       if (isAnswered) return;
     isAnswered = true;
 
     const correctOption = shuffledWordList[currentWordIndex].english;
@@ -232,4 +272,70 @@ function checkAnswer(selectedOption, button) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', startNewRound);
+    
+    // (Plaats hier de functies `loadQuestion` en `checkAnswer` van het woordenspel)
+    // Dit deel laat ik hier even weg om het antwoord beknopt te houden, 
+    // maar je moet je vorige `loadQuestion` en `checkAnswer` hier kopiëren.
+
+    // --- ZINNENSPEL LOGICA ---
+    let currentSentence = "";
+    const answerArea = document.getElementById('sentence-answer-area');
+    const scrambleArea = document.getElementById('sentence-scramble-area');
+    const checkSentenceBtn = document.getElementById('check-sentence-btn');
+    const nextSentenceBtn = document.getElementById('next-sentence-btn');
+    const sentenceFeedback = document.getElementById('sentence-feedback-text');
+
+    function startSentenceGame() {
+        nextSentenceBtn.classList.add('hidden');
+        checkSentenceBtn.classList.remove('hidden');
+        loadSentenceQuestion();
+    }
+
+    function loadSentenceQuestion() {
+        currentSentence = sentenceList[Math.floor(Math.random() * sentenceList.length)];
+        let words = currentSentence.replace('.', '').split(' ');
+        words.sort(() => 0.5 - Math.random());
+
+        answerArea.innerHTML = '';
+        scrambleArea.innerHTML = '';
+        sentenceFeedback.textContent = '';
+        
+        words.forEach(word => {
+            const chip = document.createElement('span');
+            chip.textContent = word;
+            chip.className = 'word-chip';
+            chip.addEventListener('click', moveWord);
+            scrambleArea.appendChild(chip);
+        });
+    }
+
+    function moveWord(event) {
+        const chip = event.target;
+        if (chip.parentElement.id === 'sentence-scramble-area') {
+            answerArea.appendChild(chip);
+        } else {
+            scrambleArea.appendChild(chip);
+        }
+    }
+    
+    checkSentenceBtn.addEventListener('click', () => {
+        let userAnswer = [];
+        answerArea.querySelectorAll('.word-chip').forEach(chip => userAnswer.push(chip.textContent));
+        const finalAnswer = userAnswer.join(' ').replace('.', '');
+        const correctAnswer = currentSentence.replace('.', '');
+
+        if (finalAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+            sentenceFeedback.textContent = "Chính xác!";
+            sentenceFeedback.className = 'feedback correct';
+            speak(currentSentence);
+            checkSentenceBtn.classList.add('hidden');
+            nextSentenceBtn.classList.remove('hidden');
+        } else {
+            sentenceFeedback.textContent = "Không đúng, thử lại nhé.";
+            sentenceFeedback.className = 'feedback incorrect';
+        }
+    });
+
+    nextSentenceBtn.addEventListener('click', startSentenceGame);
+
+});
