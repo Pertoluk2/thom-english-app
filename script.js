@@ -5,139 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===================================================================
 
     const wordList = [
-        // === Gevoelens & Emoties ===
-        { vietnamese: "Hạnh phúc", english: "Happy" },
-        { vietnamese: "Buồn", english: "Sad" },
-        { vietnamese: "Phấn khích", english: "Excited" },
-        { vietnamese: "Tức giận", english: "Angry" },
-        { vietnamese: "Lo lắng", english: "Nervous" },
-        { vietnamese: "Sợ hãi", english: "Scared" },
-        { vietnamese: "Tự hào", english: "Proud" },
-        { vietnamese: "Mệt mỏi", english: "Exhausted" },
-        { vietnamese: "Chán nản", english: "Bored" },
-        { vietnamese: "Ghen tị", english: "Jealous" },
-        { vietnamese: "Hài lòng", english: "Pleased" },
-        { vietnamese: "Thoải mái", english: "Comfortable" },
-        { vietnamese: "Biết ơn", english: "Grateful" },
-        { vietnamese: "Thích thú", english: "Amused" },
-
-        // === Mensen & Familie ===
-        { vietnamese: "Giáo viên", english: "Teacher" },
-        { vietnamese: "Bạn bè", english: "Friend" },
-        { vietnamese: "Gia đình", english: "Family" },
-        { vietnamese: "Anh/em trai", english: "Brother" },
-        { vietnamese: "Con trai", english: "Son" },
-        { vietnamese: "Mẹ", english: "Mother" },
-        { vietnamese: "Chồng", english: "Husband" },
-        { vietnamese: "Chú/Bác", english: "Uncle" },
-        { vietnamese: "Bố", english: "Father" },
-        { vietnamese: "Nông dân", english: "Farmer" },
-        { vietnamese: "Con gái", english: "Daughter" },
-        { vietnamese: "Người", english: "Person" },
-        { vietnamese: "Đàn ông", english: "Men" },
-        { vietnamese: "Ca sĩ", english: "Singer" },
-        { vietnamese: "Rapper", english: "Rapper" },
-
-        // === Dieren ===
-        { vietnamese: "Cún con", english: "Puppy" },
-        { vietnamese: "Khỉ", english: "Monkey" },
-        { vietnamese: "Lợn", english: "Pig" },
-        { vietnamese: "Cá", english: "Fish" },
-        { vietnamese: "Gà", english: "Chicken" },
-        { vietnamese: "Mèo con", english: "Kitten" },
-        { vietnamese: "Cừu", english: "Sheep" },
-        { vietnamese: "Rồng", english: "Dragon" },
-        { vietnamese: "Chim", english: "Bird" },
-        { vietnamese: "Ngựa", english: "Horse" },
-
-        // === Eten & Drinken ===
-        { vietnamese: "Mật ong", english: "Honey" },
-        { vietnamese: "Cốc/Tách", english: "Cup" },
-        { vietnamese: "Táo", english: "Apple" },
-        { vietnamese: "Chuối", english: "Banana" },
-        { vietnamese: "Đồ ăn vặt", english: "Snack" },
-        { vietnamese: "Đồ ăn", english: "Food" },
-        { vietnamese: "Bánh pudding", english: "Pudding" },
-
-        // === Objecten & Dingen ===
-        { vietnamese: "Ghế", english: "Seat" },
-        { vietnamese: "Nhẫn", english: "Ring" },
-        { vietnamese: "Tàu", english: "Ship" },
-        { vietnamese: "Thành phố", english: "City" },
-        { vietnamese: "Giày", english: "Shoe" },
-        { vietnamese: "Hồ bơi", english: "Pool" },
-        { vietnamese: "Phim", english: "Movie" },
-        { vietnamese: "Sách", english: "Book" },
-        { vietnamese: "Cây gỗ", english: "Wood" },
-        { vietnamese: "Bút", english: "Pen" },
-        { vietnamese: "Mũ", english: "Hat" },
-        { vietnamese: "Quạt", english: "Fan" },
-        { vietnamese: "Album", english: "Album" },
-        { vietnamese: "Vết sẹo", english: "Scar" },
-        { vietnamese: "Cánh tay", english: "Arm" },
-        { vietnamese: "Trái tim", english: "Heart" },
-        { vietnamese: "Quán bar", english: "Bar" },
-        { vietnamese: "Chợ", english: "Market" },
-        { vietnamese: "Xe hơi", english: "Car" },
-        { vietnamese: "Bóng", english: "Ball" },
-        { vietnamese: "Cửa", english: "Door" },
-        { vietnamese: "Sàn nhà", english: "Floor" },
-
-        // === Abstracte Concepten & Bijvoeglijke naamwoorden ===
-        { vietnamese: "Xin chào", english: "Hello" },
-        { vietnamese: "Làm ơn", english: "Please" },
-        { vietnamese: "Cảm thấy", english: "Feel" },
-        { vietnamese: "Tuyệt vời", english: "Cool" },
-        { vietnamese: "Tốt", english: "Good" },
-        { vietnamese: "Màu xanh da trời", english: "Blue" },
-        { vietnamese: "Nhóm", english: "Group" },
-        { vietnamese: "Mới", english: "New" },
-        { vietnamese: "Tuyệt", english: "Great" },
-        { vietnamese: "Thú vị", english: "Funny" },
-        { vietnamese: "Muộn", english: "Late" },
-        { vietnamese: "Thời gian", english: "Time" },
-        { vietnamese: "Đúng", english: "Right" },
-        { vietnamese: "Tuyệt diệu", english: "Wonderful" },
-        { vietnamese: "Mùa hè", english: "Summer" },
-        { vietnamese: "Tự do", english: "Freedom" },
-        { vietnamese: "Xoăn", english: "Curly" },
-        { vietnamese: "Bẩn", english: "Dirty" },
-        { vietnamese: "Nắng", english: "Sunny" },
-        { vietnamese: "Xa", english: "Far" },
-        { vietnamese: "Bốn", english: "Four" },
-        { vietnamese: "Cao", english: "Tall" },
-        { vietnamese: "Mạnh mẽ", english: "Strong" },
-        { vietnamese: "Mùa thu", english: "Autumn" },
-        { vietnamese: "Xinh đẹp", english: "Pretty" },
-        { vietnamese: "Màu đen", english: "Black" },
-        { vietnamese: "Màu đỏ", english: "Red" },
-        { vietnamese: "Xấu", english: "Bad" },
-
-        // === Werkwoorden (Acties) ===
-        { vietnamese: "Nhìn", english: "See" },
-        { vietnamese: "Ăn", english: "Eat" },
-        { vietnamese: "Ngủ", english: "Sleep" },
-        { vietnamese: "Nói", english: "Speak" },
-        { vietnamese: "Lắng nghe", english: "Listen" },
-        { vietnamese: "Đá", english: "Kick" },
-        { vietnamese: "Ngồi", english: "Sit" },
-        { vietnamese: "Di chuyển", english: "Move" },
-        { vietnamese: "Nấu ăn", english: "Cook" },
-        { vietnamese: "Nhìn", english: "Look" },
-        { vietnamese: "Chơi", english: "Play" },
-        { vietnamese: "Gửi", english: "Send" },
-        { vietnamese: "Đồng ý", english: "Agree" },
-        { vietnamese: "Học", english: "Learn" },
-        { vietnamese: "Làm việc", english: "Work" },
-        { vietnamese: "Lướt sóng", english: "Surf" },
-        { vietnamese: "Làm đau", english: "Hurt" },
-        { vietnamese: "Đốt cháy", english: "Burn" },
-        { vietnamese: "Tổ chức tiệc", english: "Party" },
-        { vietnamese: "Lờ đi", english: "Ignore" },
-        { vietnamese: "Yêu", english: "Love" }
+        // Je volledige, uitgebreide woordenlijst blijft hier ongewijzigd.
+        { vietnamese: "Hạnh phúc", english: "Happy" }, { vietnamese: "Buồn", english: "Sad" }, { vietnamese: "Phấn khích", english: "Excited" }, { vietnamese: "Tức giận", english: "Angry" }, { vietnamese: "Lo lắng", english: "Nervous" }, { vietnamese: "Sợ hãi", english: "Scared" }, { vietnamese: "Tự hào", english: "Proud" }, { vietnamese: "Mệt mỏi", english: "Exhausted" }, { vietnamese: "Chán nản", english: "Bored" }, { vietnamese: "Ghen tị", english: "Jealous" }, { vietnamese: "Hài lòng", english: "Pleased" }, { vietnamese: "Thoải mái", english: "Comfortable" }, { vietnamese: "Biết ơn", english: "Grateful" }, { vietnamese: "Thích thú", english: "Amused" }, { vietnamese: "Giáo viên", english: "Teacher" }, { vietnamese: "Bạn bè", english: "Friend" }, { vietnamese: "Gia đình", english: "Family" }, { vietnamese: "Anh/em trai", english: "Brother" }, { vietnamese: "Con trai", english: "Son" }, { vietnamese: "Mẹ", english: "Mother" }, { vietnamese: "Chồng", english: "Husband" }, { vietnamese: "Chú/Bác", english: "Uncle" }, { vietnamese: "Bố", english: "Father" }, { vietnamese: "Nông dân", english: "Farmer" }, { vietnamese: "Con gái", english: "Daughter" }, { vietnamese: "Người", english: "Person" }, { vietnamese: "Đàn ông", english: "Men" }, { vietnamese: "Ca sĩ", english: "Singer" }, { vietnamese: "Rapper", english: "Rapper" }, { vietnamese: "Cún con", english: "Puppy" }, { vietnamese: "Khỉ", english: "Monkey" }, { vietnamese: "Lợn", english: "Pig" }, { vietnamese: "Cá", english: "Fish" }, { vietnamese: "Gà", english: "Chicken" }, { vietnamese: "Mèo con", english: "Kitten" }, { vietnamese: "Cừu", english: "Sheep" }, { vietnamese: "Rồng", english: "Dragon" }, { vietnamese: "Chim", english: "Bird" }, { vietnamese: "Ngựa", english: "Horse" }, { vietnamese: "Mật ong", english: "Honey" }, { vietnamese: "Cốc/Tách", english: "Cup" }, { vietnamese: "Táo", english: "Apple" }, { vietnamese: "Chuối", english: "Banana" }, { vietnamese: "Đồ ăn vặt", english: "Snack" }, { vietnamese: "Đồ ăn", english: "Food" }, { vietnamese: "Bánh pudding", english: "Pudding" }, { vietnamese: "Ghế", english: "Seat" }, { vietnamese: "Nhẫn", english: "Ring" }, { vietnamese: "Tàu", english: "Ship" }, { vietnamese: "Thành phố", english: "City" }, { vietnamese: "Giày", english: "Shoe" }, { vietnamese: "Hồ bơi", english: "Pool" }, { vietnamese: "Phim", english: "Movie" }, { vietnamese: "Sách", english: "Book" }, { vietnamese: "Cây gỗ", english: "Wood" }, { vietnamese: "Bút", english: "Pen" }, { vietnamese: "Mũ", english: "Hat" }, { vietnamese: "Quạt", english: "Fan" }, { vietnamese: "Album", english: "Album" }, { vietnamese: "Vết sẹo", english: "Scar" }, { vietnamese: "Cánh tay", english: "Arm" }, { vietnamese: "Trái tim", english: "Heart" }, { vietnamese: "Quán bar", english: "Bar" }, { vietnamese: "Chợ", english: "Market" }, { vietnamese: "Xe hơi", english: "Car" }, { vietnamese: "Bóng", english: "Ball" }, { vietnamese: "Cửa", english: "Door" }, { vietnamese: "Sàn nhà", english: "Floor" }, { vietnamese: "Xin chào", english: "Hello" }, { vietnamese: "Làm ơn", english: "Please" }, { vietnamese: "Cảm thấy", english: "Feel" }, { vietnamese: "Tuyệt vời", english: "Cool" }, { vietnamese: "Tốt", english: "Good" }, { vietnamese: "Màu xanh da trời", english: "Blue" }, { vietnamese: "Nhóm", english: "Group" }, { vietnamese: "Mới", english: "New" }, { vietnamese: "Tuyệt", english: "Great" }, { vietnamese: "Thú vị", english: "Funny" }, { vietnamese: "Muộn", english: "Late" }, { vietnamese: "Thời gian", english: "Time" }, { vietnamese: "Đúng", english: "Right" }, { vietnamese: "Tuyệt diệu", english: "Wonderful" }, { vietnamese: "Mùa hè", english: "Summer" }, { vietnamese: "Tự do", english: "Freedom" }, { vietnamese: "Xoăn", english: "Curly" }, { vietnamese: "Bẩn", english: "Dirty" }, { vietnamese: "Nắng", english: "Sunny" }, { vietnamese: "Xa", english: "Far" }, { vietnamese: "Bốn", english: "Four" }, { vietnamese: "Cao", english: "Tall" }, { vietnamese: "Mạnh mẽ", english: "Strong" }, { vietnamese: "Mùa thu", english: "Autumn" }, { vietnamese: "Xinh đẹp", english: "Pretty" }, { vietnamese: "Màu đen", english: "Black" }, { vietnamese: "Màu đỏ", english: "Red" }, { vietnamese: "Xấu", english: "Bad" }, { vietnamese: "Nhìn", english: "See" }, { vietnamese: "Ăn", english: "Eat" }, { vietnamese: "Ngủ", english: "Sleep" }, { vietnamese: "Nói", english: "Speak" }, { vietnamese: "Lắng nghe", english: "Listen" }, { vietnamese: "Đá", english: "Kick" }, { vietnamese: "Ngồi", english: "Sit" }, { vietnamese: "Di chuyển", english: "Move" }, { vietnamese: "Nấu ăn", english: "Cook" }, { vietnamese: "Nhìn", english: "Look" }, { vietnamese: "Chơi", english: "Play" }, { vietnamese: "Gửi", english: "Send" }, { vietnamese: "Đồng ý", english: "Agree" }, { vietnamese: "Học", english: "Learn" }, { vietnamese: "Làm việc", english: "Work" }, { vietnamese: "Lướt sóng", english: "Surf" }, { vietnamese: "Làm đau", english: "Hurt" }, { vietnamese: "Đốt cháy", english: "Burn" }, { vietnamese: "Tổ chức tiệc", english: "Party" }, { vietnamese: "Lờ đi", english: "Ignore" }, { vietnamese: "Yêu", english: "Love" }
     ];
 
+    // --- NIEUWE, UITGEBREIDE ZINNENLIJST ---
     const sentenceList = [
+        // Zinnen uit vorige versie
         "The girl is pretty.",
         "My new friends are nice and funny.",
         "My favourite fruit is the banana.",
@@ -147,8 +21,37 @@ document.addEventListener('DOMContentLoaded', () => {
         "The box is on top of the rock.",
         "My mom wants to go to the shop.",
         "The doctor has got a lot of hot coffee.",
-        "I am sorry I lost your watch."
+        "I am sorry I lost your watch.",
+        [cite_start]// Unit 1 Zinnen [cite: 28, 29, 30, 31, 32, 33, 34]
+        "You look pretty good today.",
+        "Please take a seat.",
+        "What do you mean?",
+        "He eats like a pig.",
+        "Can you speak Vietnamese?",
+        "Can you move to another group?",
+        "I am into blue shoes.",
+        "Everyone listen to me and repeat.",
+        [cite_start]// Unit 2 Zinnen [cite: 49, 50, 51, 52, 53, 54, 55, 56]
+        "Jack is having an apple for his snack.",
+        "The man plans to take his exam on Wednesday.",
+        "Are you having fun?",
+        "I am the number one fan of the show.",
+        "It hurts.",
+        [cite_start]// Unit 3 Zinnen [cite: 72, 73, 74, 75, 77, 78, 79, 80, 81, 82]
+        "How far is it from the market to the bar?",
+        "We went to the wrong restaurant.",
+        "It is not on the top of the box.",
+        "She falls in love with a tall man.",
+        "The ball went between the car and the bus.",
+        "Harry Potter has a scar on his forehead.",
+        "What is the weather like today?",
+        "It is so hot and sunny.",
+        "Mr Paul is going to the shopping mall in the morning.",
+        "I promise to love you with all my heart.",
+        "I miss my wonderful puppy."
     ];
+
+    // --- De rest van de code blijft ongewijzigd ---
 
     const mainMenu = document.getElementById('main-menu');
     const wordsGameContainer = document.getElementById('words-game-container');

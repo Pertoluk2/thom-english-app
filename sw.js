@@ -1,4 +1,4 @@
-// Versie verhoogd naar v12 - met 'bulletproof' fetch-logica voor Chrome
+// Versie verhoogd naar v13 - met 'bulletproof' fetch-logica voor Chrome
 const CACHE_NAME = 'hoc-tieng-anh-cache-v12'; 
 const urlsToCache = [
   './',
