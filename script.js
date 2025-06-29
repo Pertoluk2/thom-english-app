@@ -150,8 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
         "I am sorry I lost your watch."
     ];
 
-    // --- De rest van de code is hieronder en zou correct moeten zijn ---
-
     const mainMenu = document.getElementById('main-menu');
     const wordsGameContainer = document.getElementById('words-game-container');
     const sentenceGameContainer = document.getElementById('sentence-game-container');
@@ -206,7 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
         feedbackTextEl.textContent = "";
         feedbackTextEl.className = '';
         optionsContainerEl.innerHTML = "";
-
         const options = [currentWord.english];
         while (options.length < 4) {
             const randomWord = wordList[Math.floor(Math.random() * wordList.length)].english;
@@ -215,3 +212,101 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         options.sort(() => 0.5 - Math.random());
+        options.forEach(option => {
+            const button = document.createElement('button');
+            button.textContent = option;
+            button.classList.add('option-btn');
+            button.addEventListener('click', () => checkWordAnswer(option, button));
+            optionsContainerEl.appendChild(button);
+        });
+    }
+
+    function checkWordAnswer(selectedOption, button) {
+        if (wordGameIsAnswered) return;
+        wordGameIsAnswered = true;
+        const correctOption = shuffledWordList[currentWordIndex].english;
+        if (selectedOption === correctOption) {
+            feedbackTextEl.textContent = "Chính xác!";
+            feedbackTextEl.className = 'correct';
+            button.classList.add('correct');
+            speak(correctOption);
+            setTimeout(() => {
+                currentWordIndex++;
+                if (currentWordIndex >= shuffledWordList.length) {
+                    alert("Tuyệt vời! Hiệp tiếp theo!");
+                    startWordsGame();
+                } else {
+                    loadWordQuestion();
+                }
+            }, 1500);
+        } else {
+            feedbackTextEl.textContent = "Không đúng, thử lại nhé.";
+            feedbackTextEl.className = 'incorrect';
+            button.classList.add('incorrect');
+            setTimeout(() => {
+                wordGameIsAnswered = false;
+                button.classList.remove('incorrect');
+                feedbackTextEl.textContent = "";
+                feedbackTextEl.className = '';
+            }, 1500);
+        }
+    }
+
+    let currentSentence = "";
+    const answerArea = document.getElementById('sentence-answer-area');
+    const scrambleArea = document.getElementById('sentence-scramble-area');
+    const checkSentenceBtn = document.getElementById('check-sentence-btn');
+    const nextSentenceBtn = document.getElementById('next-sentence-btn');
+    const sentenceFeedback = document.getElementById('sentence-feedback-text');
+
+    function startSentenceGame() {
+        nextSentenceBtn.classList.add('hidden');
+        checkSentenceBtn.classList.remove('hidden');
+        checkSentenceBtn.disabled = false;
+        loadSentenceQuestion();
+    }
+
+    function loadSentenceQuestion() {
+        currentSentence = sentenceList[Math.floor(Math.random() * sentenceList.length)];
+        let words = currentSentence.replace(/[.?,!]/g, '').split(' ');
+        words.sort(() => 0.5 - Math.random());
+        answerArea.innerHTML = '';
+        scrambleArea.innerHTML = '';
+        sentenceFeedback.textContent = '';
+        sentenceFeedback.className = 'feedback';
+        words.forEach(word => {
+            if (word === "") return;
+            const chip = document.createElement('span');
+            chip.textContent = word;
+            chip.className = 'word-chip';
+            chip.addEventListener('click', moveWord);
+            scrambleArea.appendChild(chip);
+        });
+    }
+
+    function moveWord(event) {
+        const chip = event.target;
+        if (chip.parentElement.id === 'sentence-scramble-area') {
+            answerArea.appendChild(chip);
+        } else {
+            scrambleArea.appendChild(chip);
+        }
+    }
+    checkSentenceBtn.addEventListener('click', () => {
+        let userAnswer = [];
+        answerArea.querySelectorAll('.word-chip').forEach(chip => userAnswer.push(chip.textContent));
+        const finalAnswer = userAnswer.join(' ');
+        const correctAnswer = currentSentence.replace(/[.?,!]/g, '');
+        if (finalAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+            sentenceFeedback.textContent = "Chính xác!";
+            sentenceFeedback.className = 'feedback correct';
+            speak(currentSentence);
+            checkSentenceBtn.classList.add('hidden');
+            nextSentenceBtn.classList.remove('hidden');
+        } else {
+            sentenceFeedback.textContent = "Không đúng, thử lại nhé.";
+            sentenceFeedback.className = 'feedback incorrect';
+        }
+    });
+    nextSentenceBtn.addEventListener('click', startSentenceGame);
+});
