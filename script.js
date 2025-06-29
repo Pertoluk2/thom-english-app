@@ -1,19 +1,5 @@
-// Lijst met woorden. Je kunt hier eenvoudig meer woorden toevoegen!
+// Lijst met woorden, bijgewerkt op basis van de foto's en het PDF-lesboek.
 const wordList = [
-    // === Algemene Woorden ===
-    { vietnamese: "Xin chào", english: "Hello" },
-    { vietnamese: "Cảm ơn", english: "Thank you" },
-    { vietnamese: "Tốt", english: "Good" },
-    { vietnamese: "Tồi", english: "Bad" },
-    { vietnamese: "Lá thư", english: "Letter" },
-    { vietnamese: "Kì thi", english: "Exam" },
-    { vietnamese: "Con số", english: "Number" },
-    { vietnamese: "Đồng ý", english: "Agree" },
-    { vietnamese: "Sẵn sàng", english: "Ready" },
-    { vietnamese: "Bẩn", english: "Dirty" },
-    { vietnamese: "Tuyệt vời", english: "Wonderful" },
-    { vietnamese: "Ngầu", english: "Cool" },
-
     // === Gevoelens & Emoties ===
     { vietnamese: "Hạnh phúc", english: "Happy" },
     { vietnamese: "Buồn", english: "Sad" },
@@ -31,63 +17,133 @@ const wordList = [
     { vietnamese: "Thích thú", english: "Amused" },
 
     // === Mensen & Familie ===
+    { vietnamese: "Giáo viên", english: "Teacher" },
     { vietnamese: "Bạn bè", english: "Friend" },
-    { vietnamese: "Kẻ thù", english: "Enemy" },
     { vietnamese: "Gia đình", english: "Family" },
     { vietnamese: "Anh/em trai", english: "Brother" },
-    { vietnamese: "Cô gái", english: "Girl" },
+    { vietnamese: "Con trai", english: "Son" },
+    { vietnamese: "Mẹ", english: "Mother" },
+    { vietnamese: "Chồng", english: "Husband" },
+    { vietnamese: "Chú/Bác", english: "Uncle" },
+    { vietnamese: "Bố", english: "Father" },
+    { vietnamese: "Nông dân", english: "Farmer" },
+    { vietnamese: "Con gái", english: "Daughter" },
     { vietnamese: "Người", english: "Person" },
-    { vietnamese: "Rapper", english: "Rapper" },
+    { vietnamese: "Đàn ông", english: "Men" },
     { vietnamese: "Ca sĩ", english: "Singer" },
+    { vietnamese: "Rapper", english: "Rapper" },
+
+    // === Dieren ===
+    { vietnamese: "Cún con", english: "Puppy" },
+    { vietnamese: "Khỉ", english: "Monkey" },
+    { vietnamese: "Lợn", english: "Pig" },
+    { vietnamese: "Cá", english: "Fish" },
+    { vietnamese: "Gà", english: "Chicken" },
+    { vietnamese: "Mèo con", english: "Kitten" },
+    { vietnamese: "Cừu", english: "Sheep" },
+    { vietnamese: "Rồng", english: "Dragon" },
+    { vietnamese: "Chim", english: "Bird" },
+    { vietnamese: "Ngựa", english: "Horse" },
+
+    // === Eten & Drinken ===
+    { vietnamese: "Mật ong", english: "Honey" },
+    { vietnamese: "Cốc/Tách", english: "Cup" },
+    { vietnamese: "Táo", english: "Apple" },
+    { vietnamese: "Chuối", english: "Banana" },
+    { vietnamese: "Đồ ăn vặt", english: "Snack" },
+    { vietnamese: "Đồ ăn", english: "Food" },
+    { vietnamese: "Bánh pudding", english: "Pudding" },
 
     // === Objecten & Dingen ===
-    { vietnamese: "Cái bút", english: "Pen" },
-    { vietnamese: "Cái quạt", english: "Fan" },
-    { vietnamese: "Cái mũ", english: "Hat" },
-    { vietnamese: "Cuốn sách", english: "Book" },
-    { vietnamese: "Chiếc nhẫn", english: "Ring" },
-    { vietnamese: "Đôi giày", english: "Shoe" },
+    { vietnamese: "Ghế", english: "Seat" },
+    { vietnamese: "Nhẫn", english: "Ring" },
+    { vietnamese: "Tàu", english: "Ship" },
+    { vietnamese: "Thành phố", english: "City" },
+    { vietnamese: "Giày", english: "Shoe" },
     { vietnamese: "Hồ bơi", english: "Pool" },
     { vietnamese: "Phim", english: "Movie" },
-    { vietnamese: "Đồ ăn", english: "Food" },
+    { vietnamese: "Sách", english: "Book" },
+    { vietnamese: "Cây gỗ", english: "Wood" },
+    { vietnamese: "Bút", english: "Pen" },
+    { vietnamese: "Mũ", english: "Hat" },
+    { vietnamese: "Quạt", english: "Fan" },
+    { vietnamese: "Album", english: "Album" },
+    { vietnamese: "Vết sẹo", english: "Scar" },
+    { vietnamese: "Cánh tay", english: "Arm" },
+    { vietnamese: "Trái tim", english: "Heart" },
+    { vietnamese: "Quán bar", english: "Bar" },
+    { vietnamese: "Chợ", english: "Market" },
+    { vietnamese: "Xe hơi", english: "Car" },
+    { vietnamese: "Bóng", english: "Ball" },
+    { vietnamese: "Cửa", english: "Door" },
+    { vietnamese: "Sàn nhà", english: "Floor" },
 
-    // === Natuur & Dieren ===
-    { vietnamese: "Con mèo", english: "Cat" },
-    { vietnamese: "Con chó", english: "Dog" },
-    { vietnamese: "Con rồng", english: "Dragon" },
-    { vietnamese: "Con chim", english: "Bird" },
-    { vietnamese: "Quả táo", english: "Apple" },
-    { vietnamese: "Quả chuối", english: "Banana" },
-    { vietnamese: "Nước", english: "Water" },
+    // === Abstracte Concepten & Bijvoeglijke naamwoorden ===
+    { vietnamese: "Xin chào", english: "Hello" },
+    { vietnamese: "Làm ơn", english: "Please" },
+    { vietnamese: "Cảm thấy", english: "Feel" },
+    { vietnamese: "Tuyệt vời", english: "Cool" },
+    { vietnamese: "Tốt", english: "Good" },
+    { vietnamese: "Màu xanh da trời", english: "Blue" },
+    { vietnamese: "Nhóm", english: "Group" },
+    { vietnamese: "Mới", english: "New" },
+    { vietnamese: "Tuyệt", english: "Great" },
+    { vietnamese: "Thú vị", english: "Funny" },
+    { vietnamese: "Muộn", english: "Late" },
+    { vietnamese: "Thời gian", english: "Time" },
+    { vietnamese: "Đúng", english: "Right" },
+    { vietnamese: "Tuyệt diệu", english: "Wonderful" },
     { vietnamese: "Mùa hè", english: "Summer" },
     { vietnamese: "Tự do", english: "Freedom" },
-    { vietnamese: "Cây tre", english: "Bamboo" },
-    { vietnamese: "Thành phố", english: "City" },
+    { vietnamese: "Lo lắng", english: "Nervous" },
+    { vietnamese: "Xoăn", english: "Curly" },
+    { vietnamese: "Bẩn", english: "Dirty" },
+    { vietnamese: "Nắng", english: "Sunny" },
+    { vietnamese: "Xa", english: "Far" },
+    { vietnamese: "Bốn", english: "Four" },
+    { vietnamese: "Cao", english: "Tall" },
+    { vietnamese: "Mạnh mẽ", english: "Strong" },
+    { vietnamese: "Mùa thu", english: "Autumn" },
+    { vietnamese: "Xinh đẹp", english: "Pretty" },
+    { vietnamese: "Màu đen", english: "Black" },
+    { vietnamese: "Màu đỏ", english: "Red" },
+    { vietnamese: "Xấu", english: "Bad" },
 
-    // === Acties & Concepten ===
-    { vietnamese: "Gửi", english: "Send" },
+    // === Werkwoorden (Acties) ===
+    { vietnamese: "Nhìn", english: "See" },
+    { vietnamese: "Ăn", english: "Eat" },
+    { vietnamese: "Ngủ", english: "Sleep" },
+    { vietnamese: "Nói", english: "Speak" },
+    { vietnamese: "Lắng nghe", english: "Listen" },
+    { vietnamese: "Đá", english: "Kick" },
     { vietnamese: "Ngồi", english: "Sit" },
-    { vietnamese: "Đá (bóng)", english: "Kick" },
-    { vietnamese: "Học", english: "Learn" },
     { vietnamese: "Di chuyển", english: "Move" },
-    { vietnamese: "Đau", english: "Hurt" },
-    { vietnamese: "Internet", english: "Internet" },
-    { vietnamese: "Nhóm", english: "Group" },
-    { vietnamese: "Chương trình", english: "Show" }
+    { vietnamese: "Nấu ăn", english: "Cook" },
+    { vietnamese: "Nhìn", english: "Look" },
+    { vietnamese: "Chơi", english: "Play" },
+    { vietnamese: "Gửi", english: "Send" },
+    { vietnamese: "Đồng ý", english: "Agree" },
+    { vietnamese: "Học", english: "Learn" },
+    { vietnamese: "Làm việc", english: "Work" },
+    { vietnamese: "Lướt sóng", english: "Surf" },
+    { vietnamese: "Làm đau", english: "Hurt" },
+    { vietnamese: "Đốt cháy", english: "Burn" },
+    { vietnamese: "Tổ chức tiệc", english: "Party" },
+    { vietnamese: "Lờ đi", english: "Ignore" },
+    { vietnamese: "Yêu", english: "Love" }
 ];
 
-// --- NIEUWE CODE HIERONDER ---
+
+// --- De rest van de code blijft ongewijzigd ---
 
 let shuffledWordList = [];
 let currentWordIndex = 0;
 let isAnswered = false;
 
-// Verwijzingen naar de HTML-elementen
 const vietnameseWordEl = document.getElementById('vietnamese-word');
 const optionsContainerEl = document.getElementById('options-container');
 const feedbackTextEl = document.getElementById('feedback-text');
 
-// Een standaard 'shuffle' functie om de volgorde willekeurig te maken
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -95,16 +151,13 @@ function shuffleArray(array) {
     }
 }
 
-// Functie om een nieuwe ronde te starten met een geschudde lijst
 function startNewRound() {
-    // Maak een kopie van de master-lijst en schud deze
     shuffledWordList = [...wordList];
     shuffleArray(shuffledWordList);
     currentWordIndex = 0;
     loadQuestion();
 }
 
-// Functie om de audio-uitspraak af te spelen
 function speak(text) {
     if ('speechSynthesis' in window) {
         const utterance = new SpeechSynthesisUtterance(text);
@@ -116,10 +169,8 @@ function speak(text) {
     }
 }
 
-// Functie om de volgende vraag te laden
 function loadQuestion() {
     isAnswered = false;
-    // Gebruik nu de geschudde lijst
     const currentWord = shuffledWordList[currentWordIndex];
 
     vietnameseWordEl.textContent = currentWord.vietnamese;
@@ -127,7 +178,6 @@ function loadQuestion() {
     optionsContainerEl.innerHTML = "";
 
     const options = [currentWord.english];
-    // De foute antwoorden kunnen we nog steeds willekeurig uit de originele lijst pakken
     while (options.length < 4) {
         const randomWord = wordList[Math.floor(Math.random() * wordList.length)].english;
         if (!options.includes(randomWord)) {
@@ -146,12 +196,10 @@ function loadQuestion() {
     });
 }
 
-// Functie om het gekozen antwoord te controleren
 function checkAnswer(selectedOption, button) {
     if (isAnswered) return;
     isAnswered = true;
 
-    // Haal het juiste antwoord uit de geschudde lijst
     const correctOption = shuffledWordList[currentWordIndex].english;
 
     if (selectedOption === correctOption) {
@@ -163,12 +211,11 @@ function checkAnswer(selectedOption, button) {
 
         setTimeout(() => {
             currentWordIndex++;
-            // Controleer of we aan het einde van de geschudde lijst zijn
             if (currentWordIndex >= shuffledWordList.length) {
                 alert("Tuyệt vời! Bạn đã hoàn thành tất cả các từ. Chúng ta bắt đầu lại với een nieuwe willekeurige volgorde.");
-                startNewRound(); // Start een nieuwe ronde, die de lijst opnieuw schudt
+                startNewRound();
             } else {
-                loadQuestion(); // Laad gewoon het volgende woord
+                loadQuestion();
             }
         }, 2000);
 
@@ -185,5 +232,4 @@ function checkAnswer(selectedOption, button) {
     }
 }
 
-// Start de app door een nieuwe, willekeurige ronde te beginnen
 document.addEventListener('DOMContentLoaded', startNewRound);
