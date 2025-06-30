@@ -152,3 +152,32 @@ body {
 .incorrect { background-color: #f44336 !important; color: white !important; }
 #feedback-text.correct, #sentence-feedback-text.correct { color: #4caf50; }
 #feedback-text.incorrect, #sentence-feedback-text.incorrect { color: #f44336; }
+
+/* Niveauscherm Stijlen */
+#level-selection-container h2 {
+    color: #ad1457;
+    margin-bottom: 20px;
+}
+
+#level-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+}
+
+.level-btn {
+    padding: 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: 2px solid #ec407a;
+    color: #ec407a;
+    background-color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.level-btn:hover {
+    background-color: #ec407a;
+    color: white;
+}

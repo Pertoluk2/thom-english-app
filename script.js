@@ -1,83 +1,84 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ===================================================================
-    // --- DATA (Woorden en Zinnen) ---
+    // --- DATA (Woorden en Zinnen met Unit-niveaus 1 t/m 5) ---
     // ===================================================================
 
     const wordList = [
-        // Je volledige, uitgebreide woordenlijst blijft hier ongewijzigd.
-        { vietnamese: "Hạnh phúc", english: "Happy" }, { vietnamese: "Buồn", english: "Sad" }, { vietnamese: "Phấn khích", english: "Excited" }, { vietnamese: "Tức giận", english: "Angry" }, { vietnamese: "Lo lắng", english: "Nervous" }, { vietnamese: "Sợ hãi", english: "Scared" }, { vietnamese: "Tự hào", english: "Proud" }, { vietnamese: "Mệt mỏi", english: "Exhausted" }, { vietnamese: "Chán nản", english: "Bored" }, { vietnamese: "Ghen tị", english: "Jealous" }, { vietnamese: "Hài lòng", english: "Pleased" }, { vietnamese: "Thoải mái", english: "Comfortable" }, { vietnamese: "Biết ơn", english: "Grateful" }, { vietnamese: "Thích thú", english: "Amused" }, { vietnamese: "Giáo viên", english: "Teacher" }, { vietnamese: "Bạn bè", english: "Friend" }, { vietnamese: "Gia đình", english: "Family" }, { vietnamese: "Anh/em trai", english: "Brother" }, { vietnamese: "Con trai", english: "Son" }, { vietnamese: "Mẹ", english: "Mother" }, { vietnamese: "Chồng", english: "Husband" }, { vietnamese: "Chú/Bác", english: "Uncle" }, { vietnamese: "Bố", english: "Father" }, { vietnamese: "Nông dân", english: "Farmer" }, { vietnamese: "Con gái", english: "Daughter" }, { vietnamese: "Người", english: "Person" }, { vietnamese: "Đàn ông", english: "Men" }, { vietnamese: "Ca sĩ", english: "Singer" }, { vietnamese: "Rapper", english: "Rapper" }, { vietnamese: "Cún con", english: "Puppy" }, { vietnamese: "Khỉ", english: "Monkey" }, { vietnamese: "Lợn", english: "Pig" }, { vietnamese: "Cá", english: "Fish" }, { vietnamese: "Gà", english: "Chicken" }, { vietnamese: "Mèo con", english: "Kitten" }, { vietnamese: "Cừu", english: "Sheep" }, { vietnamese: "Rồng", english: "Dragon" }, { vietnamese: "Chim", english: "Bird" }, { vietnamese: "Ngựa", english: "Horse" }, { vietnamese: "Mật ong", english: "Honey" }, { vietnamese: "Cốc/Tách", english: "Cup" }, { vietnamese: "Táo", english: "Apple" }, { vietnamese: "Chuối", english: "Banana" }, { vietnamese: "Đồ ăn vặt", english: "Snack" }, { vietnamese: "Đồ ăn", english: "Food" }, { vietnamese: "Bánh pudding", english: "Pudding" }, { vietnamese: "Ghế", english: "Seat" }, { vietnamese: "Nhẫn", english: "Ring" }, { vietnamese: "Tàu", english: "Ship" }, { vietnamese: "Thành phố", english: "City" }, { vietnamese: "Giày", english: "Shoe" }, { vietnamese: "Hồ bơi", english: "Pool" }, { vietnamese: "Phim", english: "Movie" }, { vietnamese: "Sách", english: "Book" }, { vietnamese: "Cây gỗ", english: "Wood" }, { vietnamese: "Bút", english: "Pen" }, { vietnamese: "Mũ", english: "Hat" }, { vietnamese: "Quạt", english: "Fan" }, { vietnamese: "Album", english: "Album" }, { vietnamese: "Vết sẹo", english: "Scar" }, { vietnamese: "Cánh tay", english: "Arm" }, { vietnamese: "Trái tim", english: "Heart" }, { vietnamese: "Quán bar", english: "Bar" }, { vietnamese: "Chợ", english: "Market" }, { vietnamese: "Xe hơi", english: "Car" }, { vietnamese: "Bóng", english: "Ball" }, { vietnamese: "Cửa", english: "Door" }, { vietnamese: "Sàn nhà", english: "Floor" }, { vietnamese: "Xin chào", english: "Hello" }, { vietnamese: "Làm ơn", english: "Please" }, { vietnamese: "Cảm thấy", english: "Feel" }, { vietnamese: "Tuyệt vời", english: "Cool" }, { vietnamese: "Tốt", english: "Good" }, { vietnamese: "Màu xanh da trời", english: "Blue" }, { vietnamese: "Nhóm", english: "Group" }, { vietnamese: "Mới", english: "New" }, { vietnamese: "Tuyệt", english: "Great" }, { vietnamese: "Thú vị", english: "Funny" }, { vietnamese: "Muộn", english: "Late" }, { vietnamese: "Thời gian", english: "Time" }, { vietnamese: "Đúng", english: "Right" }, { vietnamese: "Tuyệt diệu", english: "Wonderful" }, { vietnamese: "Mùa hè", english: "Summer" }, { vietnamese: "Tự do", english: "Freedom" }, { vietnamese: "Xoăn", english: "Curly" }, { vietnamese: "Bẩn", english: "Dirty" }, { vietnamese: "Nắng", english: "Sunny" }, { vietnamese: "Xa", english: "Far" }, { vietnamese: "Bốn", english: "Four" }, { vietnamese: "Cao", english: "Tall" }, { vietnamese: "Mạnh mẽ", english: "Strong" }, { vietnamese: "Mùa thu", english: "Autumn" }, { vietnamese: "Xinh đẹp", english: "Pretty" }, { vietnamese: "Màu đen", english: "Black" }, { vietnamese: "Màu đỏ", english: "Red" }, { vietnamese: "Xấu", english: "Bad" }, { vietnamese: "Nhìn", english: "See" }, { vietnamese: "Ăn", english: "Eat" }, { vietnamese: "Ngủ", english: "Sleep" }, { vietnamese: "Nói", english: "Speak" }, { vietnamese: "Lắng nghe", english: "Listen" }, { vietnamese: "Đá", english: "Kick" }, { vietnamese: "Ngồi", english: "Sit" }, { vietnamese: "Di chuyển", english: "Move" }, { vietnamese: "Nấu ăn", english: "Cook" }, { vietnamese: "Nhìn", english: "Look" }, { vietnamese: "Chơi", english: "Play" }, { vietnamese: "Gửi", english: "Send" }, { vietnamese: "Đồng ý", english: "Agree" }, { vietnamese: "Học", english: "Learn" }, { vietnamese: "Làm việc", english: "Work" }, { vietnamese: "Lướt sóng", english: "Surf" }, { vietnamese: "Làm đau", english: "Hurt" }, { vietnamese: "Đốt cháy", english: "Burn" }, { vietnamese: "Tổ chức tiệc", english: "Party" }, { vietnamese: "Lờ đi", english: "Ignore" }, { vietnamese: "Yêu", english: "Love" }
+        // UNIT 1
+        { vietnamese: "Nhìn", english: "see", unit: 1 }, { vietnamese: "Giáo viên", english: "teacher", unit: 1 }, { vietnamese: "Làm ơn", english: "please", unit: 1 }, { vietnamese: "Ăn", english: "eat", unit: 1 }, { vietnamese: "Con cừu", english: "sheep", unit: 1 }, { vietnamese: "Chỗ ngồi", english: "seat", unit: 1 }, { vietnamese: "Ngủ", english: "sleep", unit: 1 }, { vietnamese: "Nói", english: "speak", unit: 1 }, { vietnamese: "Tiếng Việt", english: "Vietnamese", unit: 1 }, { vietnamese: "Cảm thấy", english: "feel", unit: 1 }, { vietnamese: "Con heo", english: "pig", unit: 1 }, { vietnamese: "Con cá", english: "fish", unit: 1 }, { vietnamese: "Con gà", english: "chicken", unit: 1 }, { vietnamese: "Mèo con", english: "kitten", unit: 1 }, { vietnamese: "Lắng nghe", english: "listen", unit: 1 }, { vietnamese: "Chiếc nhẫn", english: "ring", unit: 1 }, { vietnamese: "Đá (bóng)", english: "kick", unit: 1 }, { vietnamese: "Ngồi", english: "sit", unit: 1 }, { vietnamese: "Con tàu", english: "ship", unit: 1 }, { vietnamese: "Thành phố", english: "city", unit: 1 }, { vietnamese: "Ngầu", english: "cool", unit: 1 }, { vietnamese: "Màu xanh da trời", english: "blue", unit: 1 }, { vietnamese: "Đôi giày", english: "shoe", unit: 1 }, { vietnamese: "Di chuyển", english: "move", unit: 1 }, { vietnamese: "Nhóm", english: "group", unit: 1 }, { vietnamese: "Hồ bơi", english: "pool", unit: 1 }, { vietnamese: "Phim", english: "movie", unit: 1 }, { vietnamese: "Thức ăn", english: "food", unit: 1 }, { vietnamese: "Cây tre", english: "bamboo", unit: 1 }, { vietnamese: "Tốt", english: "good", unit: 1 }, { vietnamese: "Nấu ăn", english: "cook", unit: 1 }, { vietnamese: "Quyển sách", english: "book", unit: 1 }, { vietnamese: "Đường", english: "sugar", unit: 1 }, { vietnamese: "Bánh pudding", english: "pudding", unit: 1 }, { vietnamese: "Nhìn", english: "look", unit: 1 }, { vietnamese: "Gỗ", english: "wood", unit: 1 }, { vietnamese: "Bàn chân", english: "foot", unit: 1 }, { vietnamese: "Bóng đá", english: "football", unit: 1 },
+        // UNIT 2
+        { vietnamese: "Số mười", english: "ten", unit: 2 }, { vietnamese: "Đàn ông", english: "men", unit: 2 }, { vietnamese: "Màu đỏ", english: "red", unit: 2 }, { vietnamese: "Cái bút", english: "pen", unit: 2 }, { vietnamese: "Bạn bè", english: "friend", unit: 2 }, { vietnamese: "Cái đầu", english: "head", unit: 2 }, { vietnamese: "Gửi", english: "send", unit: 2 }, { vietnamese: "Lá thư", english: "letter", unit: 2 }, { vietnamese: "Sẵn sàng", english: "ready", unit: 2 }, { vietnamese: "Màu đen", english: "black", unit: 2 }, { vietnamese: "Cái mũ", english: "hat", unit: 2 }, { vietnamese: "Con rồng", english: "dragon", unit: 2 }, { vietnamese: "Cái quạt", english: "fan", unit: 2 }, { vietnamese: "Quả táo", english: "apple", unit: 2 }, { vietnamese: "Vui vẻ", english: "happy", unit: 2 }, { vietnamese: "Buồn", english: "sad", unit: 2 }, { vietnamese: "Tồi tệ", english: "bad", unit: 2 }, { vietnamese: "Người đàn ông", english: "man", unit: 2 }, { vietnamese: "Kì thi", english: "exam", unit: 2 }, { vietnamese: "Tuyệt vời", english: "wonderful", unit: 2 }, { vietnamese: "Anh/em trai", english: "brother", unit: 2 }, { vietnamese: "Mùa hè", english: "summer", unit: 2 }, { vietnamese: "Gia đình", english: "family", unit: 2 }, { vietnamese: "Album", english: "album", unit: 2 }, { vietnamese: "Đồng ý", english: "agree", unit: 2 }, { vietnamese: "Kẻ thù", english: "enemy", unit: 2 }, { vietnamese: "Sự tự do", english: "freedom", unit: 2 }, { vietnamese: "Quả chuối", english: "banana", unit: 2 }, { vietnamese: "Con số", english: "number", unit: 2 }, { vietnamese: "Lo lắng", english: "nervous", unit: 2 }, { vietnamese: "Tóc xoăn", english: "curly", unit: 2 }, { vietnamese: "Cô gái", english: "girl", unit: 2 }, { vietnamese: "Học", english: "learn", unit: 2 }, { vietnamese: "Làm việc", english: "work", unit: 2 }, { vietnamese: "Bẩn", english: "dirty", unit: 2 }, { vietnamese: "Con chim", english: "bird", unit: 2 }, { vietnamese: "Lướt sóng", english: "surf", unit: 2 }, { vietnamese: "Làm đau", english: "hurt", unit: 2 }, { vietnamese: "Đốt cháy", english: "burn", unit: 2 },
+        // UNIT 3
+        { vietnamese: "Con trai", english: "son", unit: 3 }, { vietnamese: "Mẹ", english: "mother", unit: 3 }, { vietnamese: "Chồng", english: "husband", unit: 3 }, { vietnamese: "Chú/Bác", english: "uncle", unit: 3 }, { vietnamese: "Con khỉ", english: "monkey", unit: 3 }, { vietnamese: "Cún con", english: "puppy", unit: 3 }, { vietnamese: "Mật ong", english: "honey", unit: 3 }, { vietnamese: "Cái cốc", english: "cup", unit: 3 }, { vietnamese: "Nắng", english: "sunny", unit: 3 }, { vietnamese: "Xe buýt", english: "bus", unit: 3 }, { vietnamese: "Bố", english: "father", unit: 3 }, { vietnamese: "Nông dân", english: "farmer", unit: 3 }, { vietnamese: "Vết sẹo", english: "scar", unit: 3 }, { vietnamese: "Cánh tay", english: "arm", unit: 3 }, { vietnamese: "Trái tim", english: "heart", unit: 3 }, { vietnamese: "Bữa tiệc", english: "party", unit: 3 }, { vietnamese: "Quán bar", english: "bar", unit: 3 }, { vietnamese: "Chợ", english: "market", unit: 3 }, { vietnamese: "Xa", english: "far", unit: 3 }, { vietnamese: "Xe hơi", english: "car", unit: 3 }, { vietnamese: "Số bốn", english: "four", unit: 3 }, { vietnamese: "Cao", english: "tall", unit: 3 }, { vietnamese: "Mạnh mẽ", english: "strong", unit: 3 }, { vietnamese: "Con gái", english: "daughter", unit: 3 }, { vietnamese: "Quả bóng", english: "ball", unit: 3 }, { vietnamese: "Con ngựa", english: "horse", unit: 3 }, { vietnamese: "Cánh cửa", english: "door", unit: 3 }, { vietnamese: "Sàn nhà", english: "floor", unit: 3 }, { vietnamese: "Lờ đi", english: "ignore", unit: 3 }, { vietnamese: "Mùa thu", english: "autumn", unit: 3 },
+        // UNIT 4
+        { vietnamese: "Số tám", english: "eight", unit: 4 }, { vietnamese: "Bánh ngọt", english: "cake", unit: 4 }, { vietnamese: "Nho", english: "grape", unit: 4 }, { vietnamese: "Trò chơi", english: "game", unit: 4 }, { vietnamese: "Đợi", english: "wait", unit: 4 }, { vietnamese: "Máy bay", english: "plane", unit: 4 }, { vietnamese: "Sóng", english: "wave", unit: 4 }, { vietnamese: "Kỳ nghỉ", english: "vacation", unit: 4 }, { vietnamese: "Hoàng gia", english: "royal", unit: 4 }, { vietnamese: "Cậu bé", english: "boy", unit: 4 }, { vietnamese: "Ồn ào", english: "noisy", unit: 4 }, { vietnamese: "Giọng nói", english: "voice", unit: 4 }, { vietnamese: "Đồ chơi", english: "toy", unit: 4 }, { vietnamese: "Làm hỏng", english: "spoil", unit: 4 }, { vietnamese: "Lựa chọn", english: "choice", unit: 4 }, { vietnamese: "Nhà vệ sinh", english: "toilet", unit: 4 }, { vietnamese: "Tìm thấy", english: "find", unit: 4 }, { vietnamese: "Tạm biệt", english: "bye", unit: 4 }, { vietnamese: "Nhút nhát", english: "shy", unit: 4 }, { vietnamese: "Mệt mỏi", english: "tired", unit: 4 }, { vietnamese: "Bay", english: "fly", unit: 4 }, { vietnamese: "Bầu trời", english: "sky", unit: 4 }, { vietnamese: "Hòn đảo", english: "island", unit: 4 }, { vietnamese: "Biểu tượng", english: "icon", unit: 4 }, { vietnamese: "Chắc chắn", english: "sure", unit: 4 }, { vietnamese: "Nghèo", english: "poor", unit: 4 }, { vietnamese: "Tức giận", english: "furious", unit: 4 }, { vietnamese: "Du khách", english: "tourist", unit: 4 }, { vietnamese: "Chuyến du lịch", english: "tour", unit: 4 }, { vietnamese: "Châu Âu", english: "Europe", unit: 4 }, { vietnamese: "Trưởng thành", english: "mature", unit: 4 },
+        // UNIT 5
+        { vietnamese: "Nỗi sợ", english: "fear", unit: 5 }, { vietnamese: "Con hươu", english: "deer", unit: 5 }, { vietnamese: "Cái tai", english: "ear", unit: 5 }, { vietnamese: "Râu", english: "beard", unit: 5 }, { vietnamese: "Bia", english: "beer", unit: 5 }, { vietnamese: "Cổ vũ", english: "cheer", unit: 5 }, { vietnamese: "Sự nghiệp", english: "career", unit: 5 }, { vietnamese: "Năm", english: "year", unit: 5 }, { vietnamese: "Thề", english: "swear", unit: 5 }, { vietnamese: "Quan tâm", english: "care", unit: 5 }, { vietnamese: "Chia sẻ", english: "share", unit: 5 }, { vietnamese: "Cặp/Đôi", english: "pair", unit: 5 }, { vietnamese: "Con gấu", english: "bear", unit: 5 }, { vietnamese: "Tóc", english: "hair", unit: 5 }, { vietnamese: "Không khí", english: "air", unit: 5 }, { vietnamese: "Tầng trên", english: "upstairs", unit: 5 }, { vietnamese: "Màu nâu", english: "brown", unit: 5 }, { vietnamese: "Con bò", english: "cow", unit: 5 }, { vietnamese: "Bông hoa", english: "flower", unit: 5 }, { vietnamese: "Đám mây", english: "cloud", unit: 5 }, { vietnamese: "Tòa tháp", english: "tower", unit: 5 }, { vietnamese: "Tải xuống", english: "download", unit: 5 }, { vietnamese: "Vòi sen", english: "shower", unit: 5 }, { vietnamese: "Giờ", english: "hour", unit: 5 }, { vietnamese: "Chậm", english: "slow", unit: 5 }, { vietnamese: "Già/Cũ", english: "old", unit: 5 }, { vietnamese: "Giữ", english: "hold", unit: 5 }, { vietnamese: "Cái bát", english: "bowl", unit: 5 }, { vietnamese: "Điện thoại", english: "phone", unit: 5 }, { vietnamese: "Vai", english: "shoulder", unit: 5 }, { vietnamese: "Xin chào", english: "hello", unit: 5 }, { vietnamese: "Trò đùa", english: "joke", unit: 5 }
     ];
 
-    // --- NIEUWE, UITGEBREIDE ZINNENLIJST ---
     const sentenceList = [
-        // Zinnen uit vorige versie
-        "The girl is pretty.",
-        "My new friends are nice and funny.",
-        "My favourite fruit is the banana.",
-        "That person works with my brother.",
-        "G-Dragon is a handsome rapper and singer.",
-        "You stepped on my feet.",
-        "The box is on top of the rock.",
-        "My mom wants to go to the shop.",
-        "The doctor has got a lot of hot coffee.",
-        "I am sorry I lost your watch.",
-        [cite_start]// Unit 1 Zinnen [cite: 28, 29, 30, 31, 32, 33, 34]
-        "You look pretty good today.",
-        "Please take a seat.",
-        "What do you mean?",
-        "He eats like a pig.",
-        "Can you speak Vietnamese?",
-        "Can you move to another group?",
-        "I am into blue shoes.",
-        "Everyone listen to me and repeat.",
-        [cite_start]// Unit 2 Zinnen [cite: 49, 50, 51, 52, 53, 54, 55, 56]
-        "Jack is having an apple for his snack.",
-        "The man plans to take his exam on Wednesday.",
-        "Are you having fun?",
-        "I am the number one fan of the show.",
-        "It hurts.",
-        [cite_start]// Unit 3 Zinnen [cite: 72, 73, 74, 75, 77, 78, 79, 80, 81, 82]
-        "How far is it from the market to the bar?",
-        "We went to the wrong restaurant.",
-        "It is not on the top of the box.",
-        "She falls in love with a tall man.",
-        "The ball went between the car and the bus.",
-        "Harry Potter has a scar on his forehead.",
-        "What is the weather like today?",
-        "It is so hot and sunny.",
-        "Mr Paul is going to the shopping mall in the morning.",
-        "I promise to love you with all my heart.",
-        "I miss my wonderful puppy."
+        { sentence: "You look pretty good today.", unit: 1 }, { sentence: "Please take a seat.", unit: 1 }, { sentence: "What do you mean?", unit: 1 }, { sentence: "He eats like a pig.", unit: 1 }, { sentence: "Can you speak Vietnamese?", unit: 1 }, { sentence: "Can you move to another group?", unit: 1 }, { sentence: "I am into blue shoes.", unit: 1 }, { sentence: "Everyone listen to me and repeat.", unit: 1 },
+        { sentence: "Jack is having an apple for his snack.", unit: 2 }, { sentence: "That person works with my brother.", unit: 2 }, { sentence: "The man plans to take his exam on Wednesday.", unit: 2 }, { sentence: "Are you having fun?", unit: 2 }, { sentence: "My favourite fruit is the banana.", unit: 2 }, { sentence: "I am the number one fan of the show.", unit: 2 }, { sentence: "G-Dragon is a handsome rapper and singer.", unit: 2 }, { sentence: "You stepped on my feet.", unit: 2 }, { sentence: "It hurts.", unit: 2 },
+        { sentence: "How far is it from the market to the bar?", unit: 3 }, { sentence: "We went to the wrong restaurant.", unit: 3 }, { sentence: "It is not on the top of the box.", unit: 3 }, { sentence: "She falls in love with a tall man.", unit: 3 }, { sentence: "The ball went between the car and the bus.", unit: 3 }, { sentence: "Harry Potter has a scar on his forehead.", unit: 3 }, { sentence: "What is the weather like today?", unit: 3 }, { sentence: "It is so hot and sunny.", unit: 3 }, { sentence: "Mr Paul is going to the shopping mall in the morning.", unit: 3 }, { sentence: "I promise to love you with all my heart.", unit: 3 }, { sentence: "I miss my wonderful puppy.", unit: 3 },
+        { sentence: "The noisy boy over there is very spoiled.", unit: 4 }, { sentence: "Jane and Kate made eight cakes.", unit: 4 }, { sentence: "Roy's choice was to broil the meat in tin foil.", unit: 4 }, { sentence: "I will take a tour to Kuala Lumpur.", unit: 4 }, { sentence: "I can't wait to join you.", unit: 4 }, { sentence: "The boy found his noisy toy.", unit: 4 }, { sentence: "The poor child had to wait for a long time.", unit: 4 }, { sentence: "The four shy boys from the island were annoying.", unit: 4 },
+        { sentence: "I don't know what you are talking about.", unit: 5 }, { sentence: "Please give me my phone over there.", unit: 5 }, { sentence: "I swear I was just joking.", unit: 5 }, { sentence: "Honey you can cry on my shoulder.", unit: 5 }, { sentence: "Have a beer! Cheers!", unit: 5 }, { sentence: "You can count on me.", unit: 5 }, { sentence: "My dear friend you should take better care of yourself.", unit: 5 }, { sentence: "The more you share the more you get.", unit: 5 }
     ];
 
-    // --- De rest van de code blijft ongewijzigd ---
-
+    // --- ELEMENTEN & STATE ---
     const mainMenu = document.getElementById('main-menu');
+    const levelSelectionContainer = document.getElementById('level-selection-container');
     const wordsGameContainer = document.getElementById('words-game-container');
     const sentenceGameContainer = document.getElementById('sentence-game-container');
+    let selectedLevel = 0;
+    let selectedGameType = '';
 
-    document.getElementById('start-words-btn').addEventListener('click', () => showGame('words'));
-    document.getElementById('start-sentences-btn').addEventListener('click', () => showGame('sentences'));
-    document.querySelectorAll('.back-to-menu').forEach(btn => btn.addEventListener('click', showMenu));
+    // --- MENU & NAVIGATIE LOGICA ---
+    document.getElementById('start-words-btn').addEventListener('click', () => selectGameType('words'));
+    document.getElementById('start-sentences-btn').addEventListener('click', () => selectGameType('sentences'));
+    document.querySelectorAll('.back-to-menu').forEach(btn => btn.addEventListener('click', showLevelSelection));
+    document.getElementById('back-to-main-menu').addEventListener('click', showMenu);
 
-    function showGame(gameType) {
+    function selectGameType(gameType) {
+        selectedGameType = gameType;
+        showLevelSelection();
+    }
+    function showLevelSelection() {
         mainMenu.classList.add('hidden');
-        if (gameType === 'words') {
+        wordsGameContainer.classList.add('hidden');
+        sentenceGameContainer.classList.add('hidden');
+        levelSelectionContainer.classList.remove('hidden');
+    }
+    function showMenu() {
+        levelSelectionContainer.classList.add('hidden');
+        mainMenu.classList.remove('hidden');
+    }
+    function showGameContainer() {
+        levelSelectionContainer.classList.add('hidden');
+        if (selectedGameType === 'words') {
             wordsGameContainer.classList.remove('hidden');
             startWordsGame();
-        } else if (gameType === 'sentences') {
+        } else if (selectedGameType === 'sentences') {
             sentenceGameContainer.classList.remove('hidden');
             startSentenceGame();
         }
     }
-
-    function showMenu() {
-        wordsGameContainer.classList.add('hidden');
-        sentenceGameContainer.classList.add('hidden');
-        mainMenu.classList.remove('hidden');
+    
+    // Niveaus dynamisch genereren
+    const levelList = document.getElementById('level-list');
+    const maxUnit = 5; // Aangepast naar 5
+    for (let i = 1; i <= maxUnit; i++) {
+        const levelButton = document.createElement('button');
+        levelButton.className = 'level-btn';
+        levelButton.textContent = 'Unit ' + i;
+        levelButton.dataset.level = i;
+        levelButton.addEventListener('click', (e) => {
+            selectedLevel = parseInt(e.target.dataset.level);
+            showGameContainer();
+        });
+        levelList.appendChild(levelButton);
     }
-
+    
     function speak(text) {
         if ('speechSynthesis' in window) {
             const utterance = new SpeechSynthesisUtterance(text);
@@ -87,7 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    let shuffledWordList = [];
+    // --- WOORDENSPEL LOGICA ---
+    let wordsToPractice = [];
     let currentWordIndex = 0;
     let wordGameIsAnswered = false;
     const vietnameseWordEl = document.getElementById('vietnamese-word');
@@ -95,21 +97,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const feedbackTextEl = document.getElementById('feedback-text');
 
     function startWordsGame() {
-        shuffledWordList = [...wordList].sort(() => 0.5 - Math.random());
+        wordsToPractice = wordList.filter(word => word.unit <= selectedLevel);
+        wordsToPractice.sort(() => 0.5 - Math.random());
         currentWordIndex = 0;
         loadWordQuestion();
     }
 
     function loadWordQuestion() {
+        if (wordsToPractice.length === 0) {
+            alert("Geen woorden gevonden voor dit niveau.");
+            showLevelSelection();
+            return;
+        }
         wordGameIsAnswered = false;
-        const currentWord = shuffledWordList[currentWordIndex];
+        const currentWord = wordsToPractice[currentWordIndex];
         vietnameseWordEl.textContent = currentWord.vietnamese;
         feedbackTextEl.textContent = "";
         feedbackTextEl.className = '';
         optionsContainerEl.innerHTML = "";
         const options = [currentWord.english];
-        while (options.length < 4) {
-            const randomWord = wordList[Math.floor(Math.random() * wordList.length)].english;
+        while (options.length < 4 && options.length < wordsToPractice.length) {
+            const randomWord = wordsToPractice[Math.floor(Math.random() * wordsToPractice.length)].english;
             if (!options.includes(randomWord)) {
                 options.push(randomWord);
             }
@@ -127,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkWordAnswer(selectedOption, button) {
         if (wordGameIsAnswered) return;
         wordGameIsAnswered = true;
-        const correctOption = shuffledWordList[currentWordIndex].english;
+        const correctOption = wordsToPractice[currentWordIndex].english;
         if (selectedOption === correctOption) {
             feedbackTextEl.textContent = "Chính xác!";
             feedbackTextEl.className = 'correct';
@@ -135,8 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
             speak(correctOption);
             setTimeout(() => {
                 currentWordIndex++;
-                if (currentWordIndex >= shuffledWordList.length) {
-                    alert("Tuyệt vời! Hiệp tiếp theo!");
+                if (currentWordIndex >= wordsToPractice.length) {
+                    alert("Tuyệt vời! Je hebt alle woorden van dit niveau gehad. We beginnen opnieuw.");
                     startWordsGame();
                 } else {
                     loadWordQuestion();
@@ -155,6 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- ZINNENSPEL LOGICA ---
+    let sentencesToPractice = [];
     let currentSentence = "";
     const answerArea = document.getElementById('sentence-answer-area');
     const scrambleArea = document.getElementById('sentence-scramble-area');
@@ -163,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sentenceFeedback = document.getElementById('sentence-feedback-text');
 
     function startSentenceGame() {
+        sentencesToPractice = sentenceList.filter(item => item.unit <= selectedLevel);
         nextSentenceBtn.classList.add('hidden');
         checkSentenceBtn.classList.remove('hidden');
         checkSentenceBtn.disabled = false;
@@ -170,7 +181,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function loadSentenceQuestion() {
-        currentSentence = sentenceList[Math.floor(Math.random() * sentenceList.length)];
+        if (sentencesToPractice.length === 0) {
+            alert("Geen zinnen gevonden voor dit niveau.");
+            showLevelSelection();
+            return;
+        }
+        const randomIndex = Math.floor(Math.random() * sentencesToPractice.length);
+        currentSentence = sentencesToPractice[randomIndex].sentence;
         let words = currentSentence.replace(/[.?,!]/g, '').split(' ');
         words.sort(() => 0.5 - Math.random());
         answerArea.innerHTML = '';
@@ -195,6 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
             scrambleArea.appendChild(chip);
         }
     }
+    
     checkSentenceBtn.addEventListener('click', () => {
         let userAnswer = [];
         answerArea.querySelectorAll('.word-chip').forEach(chip => userAnswer.push(chip.textContent));
@@ -211,5 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
             sentenceFeedback.className = 'feedback incorrect';
         }
     });
+    
     nextSentenceBtn.addEventListener('click', startSentenceGame);
 });
