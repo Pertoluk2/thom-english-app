@@ -1,9 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ===================================================================
-    // --- DATA (Woorden en Zinnen met Unit-niveaus 1 t/m 5) ---
-    // ===================================================================
-
     const wordList = [
         // UNIT 1
         { vietnamese: "Nhìn", english: "see", unit: 1 }, { vietnamese: "Giáo viên", english: "teacher", unit: 1 }, { vietnamese: "Làm ơn", english: "please", unit: 1 }, { vietnamese: "Ăn", english: "eat", unit: 1 }, { vietnamese: "Con cừu", english: "sheep", unit: 1 }, { vietnamese: "Chỗ ngồi", english: "seat", unit: 1 }, { vietnamese: "Ngủ", english: "sleep", unit: 1 }, { vietnamese: "Nói", english: "speak", unit: 1 }, { vietnamese: "Tiếng Việt", english: "Vietnamese", unit: 1 }, { vietnamese: "Cảm thấy", english: "feel", unit: 1 }, { vietnamese: "Con heo", english: "pig", unit: 1 }, { vietnamese: "Con cá", english: "fish", unit: 1 }, { vietnamese: "Con gà", english: "chicken", unit: 1 }, { vietnamese: "Mèo con", english: "kitten", unit: 1 }, { vietnamese: "Lắng nghe", english: "listen", unit: 1 }, { vietnamese: "Chiếc nhẫn", english: "ring", unit: 1 }, { vietnamese: "Đá (bóng)", english: "kick", unit: 1 }, { vietnamese: "Ngồi", english: "sit", unit: 1 }, { vietnamese: "Con tàu", english: "ship", unit: 1 }, { vietnamese: "Thành phố", english: "city", unit: 1 }, { vietnamese: "Ngầu", english: "cool", unit: 1 }, { vietnamese: "Màu xanh da trời", english: "blue", unit: 1 }, { vietnamese: "Đôi giày", english: "shoe", unit: 1 }, { vietnamese: "Di chuyển", english: "move", unit: 1 }, { vietnamese: "Nhóm", english: "group", unit: 1 }, { vietnamese: "Hồ bơi", english: "pool", unit: 1 }, { vietnamese: "Phim", english: "movie", unit: 1 }, { vietnamese: "Thức ăn", english: "food", unit: 1 }, { vietnamese: "Cây tre", english: "bamboo", unit: 1 }, { vietnamese: "Tốt", english: "good", unit: 1 }, { vietnamese: "Nấu ăn", english: "cook", unit: 1 }, { vietnamese: "Quyển sách", english: "book", unit: 1 }, { vietnamese: "Đường", english: "sugar", unit: 1 }, { vietnamese: "Bánh pudding", english: "pudding", unit: 1 }, { vietnamese: "Nhìn", english: "look", unit: 1 }, { vietnamese: "Gỗ", english: "wood", unit: 1 }, { vietnamese: "Bàn chân", english: "foot", unit: 1 }, { vietnamese: "Bóng đá", english: "football", unit: 1 },
@@ -66,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Niveaus dynamisch genereren
     const levelList = document.getElementById('level-list');
-    const maxUnit = 5; // Aangepast naar 5
+    const maxUnit = 5;
     for (let i = 1; i <= maxUnit; i++) {
         const levelButton = document.createElement('button');
         levelButton.className = 'level-btn';

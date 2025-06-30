@@ -1,5 +1,5 @@
-// Versie verhoogd naar v14 - met 'bulletproof' fetch-logica voor Chrome
-const CACHE_NAME = 'hoc-tieng-anh-cache-v14'; 
+// Versie verhoogd naar v15 - met correcte syntax
+const CACHE_NAME = 'hoc-tieng-anh-cache-v15'; 
 const urlsToCache = [
   './',
   './index.html',
@@ -15,7 +15,7 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache v12');
+        console.log('Opened cache v15');
         return cache.addAll(urlsToCache);
       })
   );
@@ -38,7 +38,7 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch-event: De nieuwe, robuuste logica.
+// Fetch-event: De robuuste logica.
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
