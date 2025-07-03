@@ -1,5 +1,4 @@
-// Versie verhoogd naar v15 - met correcte syntax
-const CACHE_NAME = 'hoc-tieng-anh-cache-v15'; 
+const CACHE_NAME = 'hoc-tieng-anh-cache-v24'; 
 const urlsToCache = [
   './',
   './index.html',
@@ -7,21 +6,30 @@ const urlsToCache = [
   './script.js',
   './manifest.json',
   './icon-192x192.png',
-  './icon-512x512.png'
+  './icon-512x512.png',
+  // NIEUW: Afbeeldingen voor de puzzel toevoegen aan de cache
+  'images/ring.png',
+  'images/sheep.png',
+  'images/city.png',
+  'images/please.png',
+  'images/blue.png',
+  'images/facebook.png',
+  'images/sugar.png',
+  'images/seat.png',
+  'images/soup.png',
+  'images/group.png'
 ];
 
-// Installatie-event: slaat alle benodigde bestanden op in de cache.
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache v15');
+        console.log('Opened cache v19');
         return cache.addAll(urlsToCache);
       })
   );
 });
 
-// Activate-event: ruimt alle oude caches op.
 self.addEventListener('activate', event => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
@@ -29,7 +37,6 @@ self.addEventListener('activate', event => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheWhitelist.indexOf(cacheName) === -1) {
-            console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -38,36 +45,23 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch-event: De robuuste logica.
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(cachedResponse => {
-        // Als het in de cache staat, geef het direct terug.
+        // Altijd netwerk proberen voor externe bronnen (zoals imgur)
+        const fetchRequest = event.request.clone();
+        const isExternalImage = fetchRequest.url.startsWith('https://i.imgur.com');
+
+        if (isExternalImage) {
+            return fetch(fetchRequest);
+        }
+
+        // Cache-first voor lokale bestanden
         if (cachedResponse) {
           return cachedResponse;
         }
-
-        // Als het niet in de cache staat, haal het van het netwerk.
-        return fetch(event.request).then(
-          networkResponse => {
-            // Controleer of we een geldig antwoord hebben gekregen.
-            if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-              return networkResponse;
-            }
-
-            // Belangrijk: maak een kopie van het antwoord.
-            const responseToCache = networkResponse.clone();
-
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                // Sla de nieuwe versie op in de cache voor de volgende keer.
-                cache.put(event.request, responseToCache);
-              });
-
-            return networkResponse;
-          }
-        );
+        return fetch(fetchRequest);
       })
   );
 });

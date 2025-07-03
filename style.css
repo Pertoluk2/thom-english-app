@@ -26,7 +26,7 @@ body {
 }
 
 /* Hoofdmenu Stijlen */
-#main-menu h1, #words-game-container h1, #sentence-game-container h1 {
+#main-menu h1, #words-game-container h1, #sentence-game-container h1, #scramble-game-container h1 {
     color: #ad1457;
 }
 #greeting-text {
@@ -69,10 +69,38 @@ body {
     height: 40px;
     font-size: 20px;
     cursor: pointer;
+    z-index: 10;
 }
 .back-to-menu::before {
     content: '←';
 }
+
+/* Niveauscherm Stijlen */
+#level-selection-container h2 {
+    color: #ad1457;
+    margin-bottom: 20px;
+}
+#level-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+}
+.level-btn {
+    padding: 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: 2px solid #ec407a;
+    color: #ec407a;
+    background-color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.level-btn:hover {
+    background-color: #ec407a;
+    color: white;
+}
+
 
 /* Woordenspel Stijlen */
 #vietnamese-word {
@@ -118,7 +146,7 @@ body {
     border: 2px dashed #90caf9;
 }
 .word-bank {
-    background-color: #fce4ec;
+    background-color: #f8bbd021;
     border: 2px dashed #f8bbd0;
 }
 .word-chip {
@@ -131,7 +159,7 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     transition: all 0.2s;
 }
-#check-sentence-btn, #next-sentence-btn {
+#check-sentence-btn, #next-sentence-btn, #check-scramble-btn, #next-scramble-btn {
     width: 100%;
     padding: 15px;
     font-size: 1.2em;
@@ -145,39 +173,39 @@ body {
 .feedback {
     font-size: 1.2em;
     min-height: 25px;
+    font-weight: bold;
 }
 
 /* Correct/Incorrect Stijlen */
 .correct { background-color: #4caf50 !important; color: white !important; }
 .incorrect { background-color: #f44336 !important; color: white !important; }
-#feedback-text.correct, #sentence-feedback-text.correct { color: #4caf50; }
-#feedback-text.incorrect, #sentence-feedback-text.incorrect { color: #f44336; }
+#feedback-text.correct, #sentence-feedback-text.correct, #scramble-feedback-text.correct { color: #4caf50; }
+#feedback-text.incorrect, #sentence-feedback-text.incorrect, #scramble-feedback-text.incorrect { color: #f44336; }
 
-/* Niveauscherm Stijlen */
-#level-selection-container h2 {
-    color: #ad1457;
-    margin-bottom: 20px;
-}
-
-#level-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 15px;
-}
-
-.level-btn {
-    padding: 20px;
-    font-size: 1.1em;
-    font-weight: bold;
-    border: 2px solid #ec407a;
-    color: #ec407a;
-    background-color: #fff;
+/* NIEUW: Stijlen voor Woordpuzzel Spel */
+#scramble-image {
+    max-width: 50%;
+    height: auto;
+    max-height: 150px;
     border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s;
+    margin: 10px auto;
+    display: block;
+    border: 3px solid #fce4ec;
 }
 
-.level-btn:hover {
-    background-color: #ec407a;
-    color: white;
+#scrambled-letters-area {
+    font-size: 2.2em;
+    font-weight: bold;
+    letter-spacing: 12px;
+    margin: 20px 0;
+    color: #d81b60;
+    text-transform: uppercase;
+    padding: 10px;
 }
+
+#scramble-input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    font-size: 1.4em;
+    border: 2px solid #ddd;
+    border-radius: 5px;
