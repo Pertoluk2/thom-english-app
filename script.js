@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // NIEUW: Zinnen voor de "Luk en Thom" unit met Vietnamese vertalingen
         { sentence: "What are you doing?", vietnamese: "Bạn đang làm gì vậy?", unit: "Luk en Thom" },
         { sentence: "I was thinking of how lucky I am to have met you.", vietnamese: "Anh đang nghĩ mình may mắn thế nào khi gặp em.", unit: "Luk en Thom" },
-        { sentence: "J just got home from work.", vietnamese: "Tôi vừa đi làm về.", unit: "Luk en Thom" },
+        { sentence: "I just got home from work.", vietnamese: "Tôi vừa đi làm về.", unit: "Luk en Thom" },
         { sentence: "Do you have to study today?", vietnamese: "Hôm nay bạn có phải học không?", unit: "Luk en Thom" },
         { sentence: "How was your day at work?", vietnamese: "Ngày làm việc của bạn thế nào?", unit: "Luk en Thom" },
         { sentence: "Glad you had a nice day.", vietnamese: "Mừng là bạn đã có một ngày vui vẻ.", unit: "Luk en Thom" },
@@ -79,10 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { sentence: "I know you are happy.", vietnamese: "Tôi biết bạn đang vui.", unit: "Luk en Thom" },
         { sentence: "Yes, I agree.", vietnamese: "Vâng, tôi đồng ý.", unit: "Luk en Thom" },
         { sentence: "Ok, I understand.", vietnamese: "Ok, tôi hiểu rồi.", unit: "Luk en Thom" },
-        { sentence: "I will add them tonight.", vietnamese: "Tôi sẽ thêm chúng vào tối nay.", unit: "Luk en Thom" },
         { sentence: "Ok, what unit are you studying?", vietnamese: "Ok, bạn đang học unit nào?", unit: "Luk en Thom" },
-        { sentence: "I unit 4.", vietnamese: "Tôi unit 4.", unit: "Luk en Thom" }, // Specifieke vertaling voor deze zin
-        { sentence: "I will add exercises tonight.", vietnamese: "Tôi sẽ thêm bài tập vào tối nay.", unit: "Luk en Thom" },
         { sentence: "Thank you for working so hard on learning English.", vietnamese: "Cảm ơn bạn đã nỗ lực rất nhiều để học tiếng Anh.", unit: "Luk en Thom" },
         { sentence: "I am a man.", vietnamese: "Tôi là một người đàn ông.", unit: "Luk en Thom" },
         { sentence: "There is a group of men standing there.", vietnamese: "Có một nhóm đàn ông đang đứng ở đó.", unit: "Luk en Thom" },
@@ -97,10 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { sentence: "Yes, I do. I like my job.", vietnamese: "Vâng, tôi có. Tôi thích công việc của tôi.", unit: "Luk en Thom" },
         { sentence: "I like my job.", vietnamese: "Tôi thích công việc của tôi.", unit: "Luk en Thom" },
         { sentence: "You are very good at your job.", vietnamese: "Bạn rất giỏi trong công việc của mình.", unit: "Luk en Thom" },
-        { sentence: "I hope to get there.", vietnamese: "Tôi hy vọng sẽ đến được đó.", unit: "Luk en Thom" },
         { sentence: "Will you exercise tomorrow morning?", vietnamese: "Sáng mai bạn có tập thể dục không?", unit: "Luk en Thom" },
         { sentence: "Yes, I do. I will train tomorrow.", vietnamese: "Vâng, tôi có. Tôi sẽ tập luyện vào ngày mai.", unit: "Luk en Thom" },
-        { sentence: "I have a little bit.", vietnamese: "Tôi có một chút.", unit: "Luk en Thom" },
         { sentence: "That is very good of you.", vietnamese: "Bạn thật tốt.", unit: "Luk en Thom" },
         { sentence: "You are improving a lot.", vietnamese: "Bạn đang tiến bộ rất nhiều.", unit: "Luk en Thom" },
         { sentence: "What time is it?", vietnamese: "Bây giờ là mấy giờ?", unit: "Luk en Thom" },
@@ -118,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { sentence: "We do it together.", vietnamese: "Chúng ta cùng làm điều đó.", unit: "Luk en Thom" },
         { sentence: "You are beyond beautiful.", vietnamese: "Bạn đẹp hơn rất nhiều.", unit: "Luk en Thom" },
         { sentence: "Good night princess.", vietnamese: "Chúc ngủ ngon công chúa.", unit: "Luk en Thom" },
-        { sentence: "See you later?", vietnamese: "Hẹn gặp lại?", unit: "Luk en Thom" },
         // Nieuw toegevoegde zinnen met Vietnamese vertalingen
         { sentence: "How are you?", vietnamese: "Bạn khỏe không?", unit: "Luk en Thom" },
         { sentence: "I'm fine, thank you. And you?", vietnamese: "Tôi khỏe, cảm ơn. Còn bạn thì sao?", unit: "Luk en Thom" },
