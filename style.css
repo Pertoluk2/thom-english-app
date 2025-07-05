@@ -131,6 +131,15 @@ body {
 }
 
 /* Zinnenspel Stijlen */
+/* NIEUW: Styling voor Vietnamese vertaling in zinnenspel */
+.vietnamese-translation {
+    font-style: italic;
+    color: #757575; /* Een lichtere kleur voor de vertaling */
+    margin-top: -10px; /* Trek het iets omhoog */
+    margin-bottom: 20px; /* Meer ruimte naar de drop-area */
+    font-size: 1em;
+}
+
 .drop-area, .word-bank {
     min-height: 100px;
     padding: 10px;
@@ -209,3 +218,4 @@ body {
     font-size: 1.4em;
     border: 2px solid #ddd;
     border-radius: 5px;
+}
