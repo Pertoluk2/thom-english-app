@@ -299,6 +299,26 @@ const scrambledWordList = [
     { correct: "mature", image: "images/mature.png", unit: 4 }
     ];
 
+// Voeg deze functie toe aan je script.js
+function clearCacheAndReload() {
+    if ('caches' in window) {
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cacheName => {
+                    return caches.delete(cacheName);
+                })
+            );
+        }).then(() => {
+            console.log('Cache gewist. Pagina wordt herladen.');
+            window.location.reload(true); // Herlaad de pagina en forceer een volledige refresh
+        }).catch(error => {
+            console.error('Fout bij het wissen van de cache:', error);
+        });
+    } else {
+        alert('Caches API niet ondersteund in deze browser.');
+        window.location.reload(true); // Probeer toch te herladen
+    }
+}
     // --- ELEMENTEN & STATE ---
     const mainMenu = document.getElementById('main-menu');
     const levelSelectionContainer = document.getElementById('level-selection-container');
@@ -313,7 +333,8 @@ const scrambledWordList = [
         document.getElementById('start-words-btn').addEventListener('click', () => selectGameType('words'));
         document.getElementById('start-sentences-btn').addEventListener('click', () => selectGameType('sentences'));
         document.getElementById('start-scramble-btn').addEventListener('click', () => selectGameType('scramble'));
-        
+        document.getElementById('clear-cache-btn').addEventListener('click', clearCacheAndReload);
+
         document.getElementById('level-back-btn').addEventListener('click', showMenu);
         document.getElementById('words-back-btn').addEventListener('click', showLevelSelection);
         document.getElementById('sentences-back-btn').addEventListener('click', showLevelSelection);

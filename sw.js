@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hoc-tieng-anh-cache-v26'; // AANGEPAST: Verhoog de cacheversie om de nieuwe afbeeldingen te cachen
+const CACHE_NAME = 'hoc-tieng-anh-cache-v27'; // AANGEPAST: Verhoog de cacheversie om de nieuwe afbeeldingen te cachen
 const urlsToCache = [
   './',
   './index.html',
@@ -160,7 +160,7 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache v26'); // AANGEPAST: Log de nieuwe versie
+        console.log('Opened cache v27'); // AANGEPAST: Log de nieuwe versie
         return cache.addAll(urlsToCache);
       })
   );
