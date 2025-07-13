@@ -431,12 +431,11 @@ function clearCacheAndReload() {
         startListeningGame(); // Start de luisteroefeningen wanneer de container wordt getoond
     }
     
-    // AANGEPASTE FUNCTIE: initializeLevelButtons()
+    // AANGEPAAST: initializeLevelButtons() (geen wijziging in deze functie zelf, maar context)
     function initializeLevelButtons() { 
         const levelList = document.getElementById('level-list');
         levelList.innerHTML = ''; 
 
-        // Verzamel alle unieke units die relevant zijn voor de geselecteerde game type
         const uniqueUnits = new Set();
         let listToFilter = [];
 
@@ -447,12 +446,9 @@ function clearCacheAndReload() {
         } else if (selectedGameType === 'scramble') {
             listToFilter = scrambledWordList;
         }
-        // Luisteroefeningen hebben geen level-selectie in deze context, dus deze hoeft niet gefilterd te worden.
-        // Als je in de toekomst luisteroefeningen per unit wilt, moet je hier 'listeningExercises' toevoegen en filteren.
-
+        
         listToFilter.forEach(item => uniqueUnits.add(item.unit));
         
-        // Sorteer de units: numerieke units eerst, dan tekstuele alfabetisch
         const sortedUnits = Array.from(uniqueUnits).sort((a, b) => {
             const isANumber = typeof a === 'number';
             const isBNumber = typeof b === 'number';
@@ -494,18 +490,16 @@ function clearCacheAndReload() {
         }
     }
 
-    // --- WOORDENSPEL LOGICA ---
+    // --- WOORDENSPEL LOGICA (onveranderd) ---
     let wordsToPractice = [];
     let currentWordIndex = 0;
     let wordGameIsAnswered = false;
 
     function startWordsGame() {
         wordsToPractice = wordList.filter(word => {
-            // Als selectedLevel een nummer is, filter dan op units <= selectedLevel
             if (typeof selectedLevel === 'number') {
                 return word.unit <= selectedLevel;
             }
-            // Als selectedLevel een string is, filter dan op exacte overeenkomst
             return word.unit === selectedLevel;
         });
         wordsToPractice.sort(() => 0.5 - Math.random());
@@ -530,7 +524,6 @@ function clearCacheAndReload() {
         optionsContainerEl.innerHTML = "";
         const options = [currentWord.english];
         
-        // AANGEPAST: Haal alle woorden op die relevant zijn voor de huidige selectie
         let allWordsForSelection;
         if (typeof selectedLevel === 'number') {
              allWordsForSelection = wordList.filter(word => word.unit <= selectedLevel);
@@ -585,7 +578,7 @@ function clearCacheAndReload() {
         }
     }
 
-    // --- ZINNENSPEL LOGICA ---
+    // --- ZINNENSPEL LOGICA (onveranderd) ---
     let sentencesToPractice = [];
     let currentSentence = "";
     
@@ -677,7 +670,7 @@ function clearCacheAndReload() {
         }
     }
 
-    // --- WOORDPUZZEL SPEL LOGICA ---
+    // --- WOORDPUZZEL SPEL LOGICA (onveranderd) ---
     let scrambleToPractice = [];
     let currentScrambleIndex = 0;
 
@@ -778,14 +771,12 @@ function clearCacheAndReload() {
         // Filter alleen de oefeningen voor Unit 1, zoals gevraagd
         const unit1Exercises = listeningExercises.filter(ex => ex.unit === 1);
 
+        // AANGEPAST: Vertaling van knopteksten
         unit1Exercises.forEach(exercise => {
             const sectionDiv = document.createElement('div');
             sectionDiv.classList.add('listening-section');
             sectionDiv.innerHTML = `
-                <h3>Deel ${exercise.part}</h3>
-                <button class="listening-btn" data-src="${exercise.slow}" data-speed="slow">Langzaam</button>
-                <button class="listening-btn" data-src="${exercise.fast}" data-speed="fast">Snel</button>
-            `;
+                <h3>Phần ${exercise.part}</h3> <button class="listening-btn" data-src="${exercise.slow}" data-speed="slow">Chậm</button> <button class="listening-btn" data-src="${exercise.fast}" data-speed="fast">Nhanh</button> `;
             listeningSectionsContainer.appendChild(sectionDiv);
         });
 
