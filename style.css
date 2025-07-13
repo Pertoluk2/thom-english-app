@@ -219,3 +219,66 @@ body {
     border: 2px solid #ddd;
     border-radius: 5px;
 }
+
+/* NIEUW: Stijlen voor Luisteroefeningen */
+#listening-game-container h2 {
+    color: #ad1457;
+    margin-bottom: 25px;
+}
+
+#listening-sections-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.listening-section {
+    background-color: #f8bbd021;
+    border: 2px solid #f8bbd0;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.listening-section h3 {
+    color: #d81b60;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+.listening-btn {
+    padding: 12px 20px;
+    font-size: 1em;
+    background-color: #ec407a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    flex-grow: 1; /* Zorgt ervoor dat knoppen de beschikbare ruimte innemen */
+    min-width: 120px; /* Minimale breedte voor knoppen */
+}
+
+.listening-btn:hover {
+    background-color: #ad1457;
+    transform: translateY(-2px);
+}
+
+.listening-btn.active-playing {
+    background-color: #4caf50; /* Groen als audio wordt afgespeeld */
+}
+
+/* Responsive aanpassingen voor kleinere schermen */
+@media (max-width: 600px) {
+    .listening-btn {
+        flex-grow: unset; /* Haal flex-grow weg op kleine schermen */
+        width: 100%; /* Maak knoppen 100% breed op kleine schermen */
+    }
+}

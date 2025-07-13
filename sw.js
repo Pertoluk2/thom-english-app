@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hoc-tieng-anh-cache-v28'; // AANGEPAST: Verhoog de cacheversie om de nieuwe afbeeldingen te cachen
+const CACHE_NAME = 'hoc-tieng-anh-cache-v29'; // AANGEPAST: Verhoog de cacheversie om de nieuwe audio toe te voegen
 const urlsToCache = [
   './',
   './index.html',
@@ -153,14 +153,23 @@ const urlsToCache = [
   'images/tour.png',
   'images/europe.png',
   'images/kualalumpur.png',
-  'images/mature.png'
+  'images/mature.png',
+  // NIEUW: Audiobestanden voor Unit 1 secties
+  'audio/unit1_part1_slow.mp3',
+  'audio/unit1_part1_fast.mp3',
+  'audio/unit1_part2_slow.mp3',
+  'audio/unit1_part2_fast.mp3',
+  'audio/unit1_part3_slow.mp3',
+  'audio/unit1_part3_fast.mp3',
+  'audio/unit1_part4_slow.mp3',
+  'audio/unit1_part4_fast.mp3'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache v28'); // AANGEPAST: Log de nieuwe versie
+        console.log('Opened cache v29'); // AANGEPAST: Log de nieuwe versie
         return cache.addAll(urlsToCache);
       })
   );

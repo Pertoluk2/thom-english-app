@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { sentence: "Yes, I understand.", vietnamese: "Vâng, tôi hiểu.", unit: "Luk en Thom" },
         { sentence: "No, I don't understand.", vietnamese: "Không, tôi không hiểu.", unit: "Luk en Thom" },
         { sentence: "When do you start work?", vietnamese: "Bạn bắt đầu làm việc khi nào?", unit: "Luk en Thom" },
-        { sentence: "I start work at [tijd].", vietnamese: "Tôi bắt đầu làm việc lúc [thời gian].", unit: "Luk en Thom" },
+        { sentence: "I start work at [time].", vietnamese: "Tôi bắt đầu làm việc lúc [thời gian].", unit: "Luk en Thom" },
         { sentence: "Do you enjoy your job?", vietnamese: "Bạn có thích công việc của mình không?", unit: "Luk en Thom" },
         { sentence: "I enjoy my job.", vietnamese: "Tôi thích công việc của tôi.", unit: "Luk en Thom" },
         { sentence: "Are you studying now?", vietnamese: "Bây giờ bạn có đang học không?", unit: "Luk en Thom" },
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { sentence: "I am tired.", vietnamese: "Tôi mệt.", unit: "Luk en Thom" },
         { sentence: "I am excited.", vietnamese: "Tôi hào hứng.", unit: "Luk en Thom" },
         { sentence: "What did you eat?", vietnamese: "Bạn đã ăn gì?", unit: "Luk en Thom" },
-        { sentence: "I ate [voedsel].", vietnamese: "Tôi đã ăn [món ăn].", unit: "Luk en Thom" },
+        { sentence: "I ate [food].", vietnamese: "Tôi đã ăn [món ăn].", unit: "Luk en Thom" },
         { sentence: "Are you hungry?", vietnamese: "Bạn có đói không?", unit: "Luk en Thom" },
         { sentence: "Yes, I am hungry.", vietnamese: "Vâng, tôi đói.", unit: "Luk en Thom" },
         { sentence: "No, I am not hungry.", vietnamese: "Không, tôi không đói.", unit: "Luk en Thom" }
@@ -255,7 +255,7 @@ const scrambledWordList = [
     { correct: "car", image: "images/car.png", unit: 3 },
     { correct: "four", image: "images/four.png", unit: 3 },
     { correct: "tall", image: "images/tall.png", unit: 3 },
-    { correct: "strong", image: "images/strong.png", unit: 3 },
+    { correct: "strong", unit: 3 },
     { correct: "daughter", image: "images/daughter.png", unit: 3 },
     { correct: "ball", image: "images/ball.png", unit: 3 },
     { correct: "horse", image: "images/horse.png", unit: 3 },
@@ -299,6 +299,14 @@ const scrambledWordList = [
     { correct: "mature", image: "images/mature.png", unit: 4 }
     ];
 
+    // NIEUW: Data voor de luisteroefeningen
+    const listeningExercises = [
+        { unit: 1, part: 1, slow: 'audio/unit1_part1_slow.mp3', fast: 'audio/unit1_part1_fast.mp3' },
+        { unit: 1, part: 2, slow: 'audio/unit1_part2_slow.mp3', fast: 'audio/unit1_part2_fast.mp3' },
+        { unit: 1, part: 3, slow: 'audio/unit1_part3_slow.mp3', fast: 'audio/unit1_part3_fast.mp3' },
+        { unit: 1, part: 4, slow: 'audio/unit1_part4_slow.mp3', fast: 'audio/unit1_part4_fast.mp3' }
+    ];
+
 // Voeg deze functie toe aan je script.js
 function clearCacheAndReload() {
     if ('caches' in window) {
@@ -325,6 +333,8 @@ function clearCacheAndReload() {
     const wordsGameContainer = document.getElementById('words-game-container');
     const sentenceGameContainer = document.getElementById('sentence-game-container');
     const scrambleGameContainer = document.getElementById('scramble-game-container');
+    const listeningGameContainer = document.getElementById('listening-game-container'); // NIEUW: Listening game container
+
     let selectedLevel = 0; // Deze variabele zal nu ook string-waarden kunnen bevatten voor unit namen.
     let selectedGameType = '';
 
@@ -333,23 +343,29 @@ function clearCacheAndReload() {
         document.getElementById('start-words-btn').addEventListener('click', () => selectGameType('words'));
         document.getElementById('start-sentences-btn').addEventListener('click', () => selectGameType('sentences'));
         document.getElementById('start-scramble-btn').addEventListener('click', () => selectGameType('scramble'));
+        document.getElementById('start-listening-btn').addEventListener('click', () => selectGameType('listening')); // NIEUW: Event listener voor luisteroefeningen
         document.getElementById('clear-cache-btn').addEventListener('click', clearCacheAndReload);
 
         document.getElementById('level-back-btn').addEventListener('click', showMenu);
         document.getElementById('words-back-btn').addEventListener('click', showLevelSelection);
         document.getElementById('sentences-back-btn').addEventListener('click', showLevelSelection);
-        document.getElementById('scramble-back-btn').addEventListener('click', showLevelSelection); // AANGEPAST: Scramble back button gaat ook naar level selection
+        document.getElementById('scramble-back-btn').addEventListener('click', showLevelSelection);
+        document.getElementById('listening-back-btn').addEventListener('click', showMenu); // NIEUW: Back button voor luisteroefeningen gaat direct naar hoofdmenu
         
-        initializeLevelButtons(); // Initialiseer de knoppen bij het starten van de app
+        initializeLevelButtons(); 
         initializeSentenceGame();
         initializeScrambleGame();
+        initializeListeningGame(); // NIEUW: Initialiseer luisteroefeningen
     }
     
     function selectGameType(gameType) {
         selectedGameType = gameType;
-        // Scramble game heeft nu ook een unit selectie, dus altijd naar showLevelSelection
-        showLevelSelection();
-        // Belangrijk: Update de level-knoppen wanneer we naar de level-selectie gaan
+        // Als het luisteroefeningen zijn, gaan we direct naar die container
+        if (gameType === 'listening') { // NIEUW: Direct naar listening container als gameType 'listening' is
+            showListeningGame();
+        } else {
+            showLevelSelection();
+        }
         initializeLevelButtons(); 
     }
 
@@ -358,8 +374,8 @@ function clearCacheAndReload() {
         wordsGameContainer.classList.add('hidden');
         sentenceGameContainer.classList.add('hidden');
         scrambleGameContainer.classList.add('hidden');
+        listeningGameContainer.classList.add('hidden'); // NIEUW: Verberg listening container
         levelSelectionContainer.classList.remove('hidden');
-        // Zorg ervoor dat de level-knoppen worden bijgewerkt
         initializeLevelButtons(); 
     }
 
@@ -368,6 +384,7 @@ function clearCacheAndReload() {
         wordsGameContainer.classList.add('hidden');
         sentenceGameContainer.classList.add('hidden');
         scrambleGameContainer.classList.add('hidden');
+        listeningGameContainer.classList.add('hidden'); // NIEUW: Verberg listening container
         mainMenu.classList.remove('hidden');
     }
 
@@ -377,6 +394,7 @@ function clearCacheAndReload() {
         wordsGameContainer.classList.add('hidden');
         sentenceGameContainer.classList.add('hidden');
         scrambleGameContainer.classList.add('hidden');
+        listeningGameContainer.classList.add('hidden'); // NIEUW: Verberg listening container
 
         if (selectedGameType === 'words') {
             wordsGameContainer.classList.remove('hidden');
@@ -388,12 +406,24 @@ function clearCacheAndReload() {
             scrambleGameContainer.classList.remove('hidden');
             startScrambleGame();
         }
+        // NIEUW: Geen actie hier voor 'listening' omdat die al direct wordt afgehandeld in selectGameType
+    }
+
+    // NIEUW: Functie om de luisteroefeningen container te tonen
+    function showListeningGame() {
+        mainMenu.classList.add('hidden');
+        levelSelectionContainer.classList.add('hidden');
+        wordsGameContainer.classList.add('hidden');
+        sentenceGameContainer.classList.add('hidden');
+        scrambleGameContainer.classList.add('hidden');
+        listeningGameContainer.classList.remove('hidden');
+        startListeningGame(); // Start de luisteroefeningen wanneer de container wordt getoond
     }
     
     // AANGEPASTE FUNCTIE: initializeLevelButtons()
     function initializeLevelButtons() { 
         const levelList = document.getElementById('level-list');
-        levelList.innerHTML = ''; // Maak bestaande knoppen leeg
+        levelList.innerHTML = ''; 
 
         // Verzamel alle unieke units die relevant zijn voor de geselecteerde game type
         const uniqueUnits = new Set();
@@ -406,6 +436,8 @@ function clearCacheAndReload() {
         } else if (selectedGameType === 'scramble') {
             listToFilter = scrambledWordList;
         }
+        // NIEUW: Luisteroefeningen hebben geen level-selectie in deze context, dus deze hoeft niet gefilterd te worden.
+        // Als je in de toekomst luisteroefeningen per unit wilt, moet je hier 'listeningExercises' toevoegen en filteren.
 
         listToFilter.forEach(item => uniqueUnits.add(item.unit));
         
@@ -415,24 +447,23 @@ function clearCacheAndReload() {
             const isBNumber = typeof b === 'number';
 
             if (isANumber && isBNumber) {
-                return a - b; // Sorteer numeriek
+                return a - b; 
             } else if (isANumber) {
-                return -1; // Nummers komen voor tekst
+                return -1; 
             } else if (isBNumber) {
-                return 1; // Nummers komen voor tekst
+                return 1; 
             } else {
-                return String(a).localeCompare(String(b)); // Sorteer tekstueel
+                return String(a).localeCompare(String(b)); 
             }
         });
 
         sortedUnits.forEach(unit => {
             const levelButton = document.createElement('button');
             levelButton.className = 'level-btn';
-            levelButton.textContent = typeof unit === 'number' ? `Unit ${unit}` : unit; // Toon "Unit X" of de tekstuele naam
-            levelButton.dataset.level = unit; // Sla de unit waarde (nummer of string) op
+            levelButton.textContent = typeof unit === 'number' ? `Unit ${unit}` : unit; 
+            levelButton.dataset.level = unit; 
             levelButton.addEventListener('click', (e) => {
                 selectedLevel = e.target.dataset.level; 
-                // Converteer naar nummer als het een numerieke string is, anders behoud string
                 if (!isNaN(selectedLevel) && selectedLevel !== "") {
                     selectedLevel = parseInt(selectedLevel, 10);
                 }
@@ -720,6 +751,64 @@ function clearCacheAndReload() {
             inputEl.focus();
         }
     }
+
+    // --- NIEUW: Luisteroefeningen Logica ---
+    let currentAudio = null; // Houdt de huidige Audio-instantie bij
+
+    function initializeListeningGame() {
+        // Er zijn geen specifieke event listeners nodig bij initialisatie, 
+        // de knoppen worden dynamisch aangemaakt in startListeningGame().
+    }
+
+    function startListeningGame() {
+        const listeningSectionsContainer = document.getElementById('listening-sections-container');
+        listeningSectionsContainer.innerHTML = ''; // Maak de container leeg
+
+        // Filter alleen de oefeningen voor Unit 1, zoals gevraagd
+        const unit1Exercises = listeningExercises.filter(ex => ex.unit === 1);
+
+        unit1Exercises.forEach(exercise => {
+            const sectionDiv = document.createElement('div');
+            sectionDiv.classList.add('listening-section');
+            sectionDiv.innerHTML = `
+                <h3>Deel ${exercise.part}</h3>
+                <button class="listening-btn" data-src="${exercise.slow}" data-speed="slow">Langzaam</button>
+                <button class="listening-btn" data-src="${exercise.fast}" data-speed="fast">Snel</button>
+            `;
+            listeningSectionsContainer.appendChild(sectionDiv);
+        });
+
+        // Voeg event listeners toe aan de nieuwe knoppen
+        listeningSectionsContainer.querySelectorAll('.listening-btn').forEach(button => {
+            button.addEventListener('click', playAudio);
+        });
+    }
+
+    function playAudio(event) {
+        const audioSrc = event.target.dataset.src;
+        const audioSpeed = event.target.dataset.speed;
+
+        // Stop eventuele eerder spelende audio
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+        }
+
+        currentAudio = new Audio(audioSrc);
+        currentAudio.play().catch(error => {
+            console.error("Fout bij afspelen van audio:", error);
+            alert("Kon audio niet afspelen. Controleer of de bestanden bestaan en in de juiste map (audio/) staan.");
+        });
+        
+        // Optioneel: Visuele feedback voor de afgespeelde knop
+        document.querySelectorAll('.listening-btn').forEach(btn => btn.classList.remove('active-playing'));
+        event.target.classList.add('active-playing');
+
+        currentAudio.onended = () => {
+            event.target.classList.remove('active-playing');
+        };
+    }
+
 
     // --- Start de app ---
     initializeApp();
