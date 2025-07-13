@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hoc-tieng-anh-cache-v29'; // AANGEPAST: Verhoog de cacheversie om de nieuwe audio toe te voegen
+const CACHE_NAME = 'hoc-tieng-anh-cache-v30'; // AANGEPAST: Verhoog de cacheversie
 const urlsToCache = [
   './',
   './index.html',
