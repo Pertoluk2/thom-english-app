@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { sentence: "I promise to love you with all my heart.", vietnamese: "Anh hứa sẽ yêu em bằng cả trái tim.", unit: 3 },
         { sentence: "I miss my wonderful puppy.", vietnamese: "Tôi nhớ chú cún con đáng yêu của tôi.", unit: 3 },
         { sentence: "The noisy boy over there is very spoiled.", vietnamese: "Cậu bé ồn ào đằng kia rất hư hỏng.", unit: 4 },
-        { sentence: "Jane and Kate made eight cakes.", vietnamese: "Jane và Kate đã làm tám cái bánh.", unit: 4 },
+        { sentence: "Jane and Kate made eight cakes.", vietnamese: "Jane en Kate đã làm tám cái bánh.", unit: 4 },
         { sentence: "Roy's choice was to broil the meat in tin foil.", vietnamese: "Lựa chọn của Roy là nướng thịt trong giấy bạc.", unit: 4 },
         { sentence: "I will take a tour to Kuala Lumpur.", vietnamese: "Tôi sẽ đi du lịch Kuala Lumpur.", unit: 4 },
         { sentence: "I can't wait to join you.", vietnamese: "Tôi nóng lòng muốn tham gia cùng bạn.", unit: 4 },
@@ -343,30 +343,40 @@ function clearCacheAndReload() {
         document.getElementById('start-words-btn').addEventListener('click', () => selectGameType('words'));
         document.getElementById('start-sentences-btn').addEventListener('click', () => selectGameType('sentences'));
         document.getElementById('start-scramble-btn').addEventListener('click', () => selectGameType('scramble'));
-        document.getElementById('start-listening-btn').addEventListener('click', () => selectGameType('listening')); // NIEUW: Event listener voor luisteroefeningen
+        document.getElementById('start-listening-btn').addEventListener('click', () => selectGameType('listening')); // Event listener voor luisteroefeningen
         document.getElementById('clear-cache-btn').addEventListener('click', clearCacheAndReload);
 
         document.getElementById('level-back-btn').addEventListener('click', showMenu);
         document.getElementById('words-back-btn').addEventListener('click', showLevelSelection);
         document.getElementById('sentences-back-btn').addEventListener('click', showLevelSelection);
         document.getElementById('scramble-back-btn').addEventListener('click', showLevelSelection);
-        document.getElementById('listening-back-btn').addEventListener('click', showMenu); // NIEUW: Back button voor luisteroefeningen gaat direct naar hoofdmenu
+        document.getElementById('listening-back-btn').addEventListener('click', showMenu); // Back button voor luisteroefeningen gaat direct naar hoofdmenu
         
         initializeLevelButtons(); 
         initializeSentenceGame();
         initializeScrambleGame();
-        initializeListeningGame(); // NIEUW: Initialiseer luisteroefeningen
+        initializeListeningGame(); // Initialiseer luisteroefeningen
     }
     
+    // AANGEPAST: selectGameType functie
     function selectGameType(gameType) {
         selectedGameType = gameType;
-        // Als het luisteroefeningen zijn, gaan we direct naar die container
-        if (gameType === 'listening') { // NIEUW: Direct naar listening container als gameType 'listening' is
-            showListeningGame();
-        } else {
-            showLevelSelection();
+        // Verberg alle spelcontainers eerst
+        mainMenu.classList.add('hidden');
+        wordsGameContainer.classList.add('hidden');
+        sentenceGameContainer.classList.add('hidden');
+        scrambleGameContainer.classList.add('hidden');
+        levelSelectionContainer.classList.add('hidden');
+        listeningGameContainer.classList.add('hidden'); // Verberg ook de luistercontainer
+
+        // Toon de juiste container op basis van het geselecteerde speltype
+        if (gameType === 'listening') { // Als het luisteroefeningen zijn, toon de listening container
+            listeningGameContainer.classList.remove('hidden');
+            startListeningGame(); // Start de luisteroefeningen
+        } else { // Voor de andere speltypen, toon de level selectie
+            levelSelectionContainer.classList.remove('hidden');
+            initializeLevelButtons(); // En initialiseer de level knoppen
         }
-        initializeLevelButtons(); 
     }
 
     function showLevelSelection() {
@@ -374,7 +384,7 @@ function clearCacheAndReload() {
         wordsGameContainer.classList.add('hidden');
         sentenceGameContainer.classList.add('hidden');
         scrambleGameContainer.classList.add('hidden');
-        listeningGameContainer.classList.add('hidden'); // NIEUW: Verberg listening container
+        listeningGameContainer.classList.add('hidden'); // Verberg listening container
         levelSelectionContainer.classList.remove('hidden');
         initializeLevelButtons(); 
     }
@@ -384,7 +394,7 @@ function clearCacheAndReload() {
         wordsGameContainer.classList.add('hidden');
         sentenceGameContainer.classList.add('hidden');
         scrambleGameContainer.classList.add('hidden');
-        listeningGameContainer.classList.add('hidden'); // NIEUW: Verberg listening container
+        listeningGameContainer.classList.add('hidden'); // Verberg listening container
         mainMenu.classList.remove('hidden');
     }
 
@@ -394,7 +404,7 @@ function clearCacheAndReload() {
         wordsGameContainer.classList.add('hidden');
         sentenceGameContainer.classList.add('hidden');
         scrambleGameContainer.classList.add('hidden');
-        listeningGameContainer.classList.add('hidden'); // NIEUW: Verberg listening container
+        listeningGameContainer.classList.add('hidden'); // Verberg listening container
 
         if (selectedGameType === 'words') {
             wordsGameContainer.classList.remove('hidden');
@@ -406,10 +416,11 @@ function clearCacheAndReload() {
             scrambleGameContainer.classList.remove('hidden');
             startScrambleGame();
         }
-        // NIEUW: Geen actie hier voor 'listening' omdat die al direct wordt afgehandeld in selectGameType
+        // Geen actie hier voor 'listening' omdat die al direct wordt afgehandeld in selectGameType
     }
 
     // NIEUW: Functie om de luisteroefeningen container te tonen
+    // Deze functie wordt nu direct vanuit selectGameType aangeroepen, maar kan behouden blijven voor duidelijkheid.
     function showListeningGame() {
         mainMenu.classList.add('hidden');
         levelSelectionContainer.classList.add('hidden');
@@ -436,7 +447,7 @@ function clearCacheAndReload() {
         } else if (selectedGameType === 'scramble') {
             listToFilter = scrambledWordList;
         }
-        // NIEUW: Luisteroefeningen hebben geen level-selectie in deze context, dus deze hoeft niet gefilterd te worden.
+        // Luisteroefeningen hebben geen level-selectie in deze context, dus deze hoeft niet gefilterd te worden.
         // Als je in de toekomst luisteroefeningen per unit wilt, moet je hier 'listeningExercises' toevoegen en filteren.
 
         listToFilter.forEach(item => uniqueUnits.add(item.unit));
