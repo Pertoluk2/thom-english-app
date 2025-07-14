@@ -160,7 +160,7 @@ const scrambledWordList = [
     { correct: "see", image: "images/see.png", unit: 1 },
     { correct: "teacher", image: "images/teacher.png", unit: 1 },
     { correct: "eat", image: "images/eat.png", unit: 1 },
-    { correct: "sleep", image: "images/sleep", unit: 1 }, // Controleer of deze afbeelding bestaat
+    { correct: "sleep", image: "images/sleep.png", unit: 1 }, // Controleer of deze afbeelding bestaat
     { correct: "speak", image: "images/speak.png", unit: 1 },
     { correct: "Vietnamese", image: "images/vietnamese.png", unit: 1 },
     { correct: "feel", image: "images/feel.png", unit: 1 },
