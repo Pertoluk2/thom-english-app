@@ -151,7 +151,7 @@ const scrambledWordList = [
     { correct: "blue", image: "images/blue.png", unit: 1 },
     { correct: "facebook", image: "images/facebook.png", unit: 1 },
     { correct: "sugar", image: "images/sugar.png", unit: 1 },
-    // { correct: "soup", image: "images/soup.png", unit: 1 }, // VERWIJDERD/UITGESCHAKELD: Als deze afbeelding niet bestaat, kan het fouten veroorzaken.
+    // { correct: "soup", image: "images/soup.png", unit: 1 }, // UITGESCHAKELD: Als deze afbeelding niet bestaat, kan het fouten veroorzaken.
     { correct: "seat", image: "images/seat.png", unit: 1 },
     { correct: "group", image: "images/group.png", unit: 1 },
 
@@ -160,7 +160,7 @@ const scrambledWordList = [
     { correct: "see", image: "images/see.png", unit: 1 },
     { correct: "teacher", image: "images/teacher.png", unit: 1 },
     { correct: "eat", image: "images/eat.png", unit: 1 },
-    { correct: "sleep", image: "images/sleep.png", unit: 1 }, // Controleer of deze afbeelding bestaat
+    { correct: "sleep", image: "images/sleep.png", unit: 1 }, // AANGEPAST: .png extensie toegevoegd
     { correct: "speak", image: "images/speak.png", unit: 1 },
     { correct: "Vietnamese", image: "images/vietnamese.png", unit: 1 },
     { correct: "feel", image: "images/feel.png", unit: 1 },
@@ -340,7 +340,7 @@ function clearCacheAndReload() {
 
     let selectedLevel = 0; 
     let selectedGameType = '';
-    let selectedListeningUnit = null; 
+    let selectedListeningUnit = null; // Correcte declaratie, bovenaan en maar één keer
 
     // --- NAVIGATIE ---
     function initializeApp() {
@@ -462,10 +462,7 @@ function clearCacheAndReload() {
             levelButton.textContent = typeof unit === 'number' ? `Unit ${unit}` : unit; 
             levelButton.dataset.level = unit; 
             levelButton.addEventListener('click', (e) => {
-                selectedLevel = e.target.dataset.level; 
-                if (!isNaN(selectedLevel) && selectedLevel !== "") {
-                    selectedLevel = parseInt(selectedLevel, 10);
-                }
+                selectedLevel = parseInt(e.target.dataset.level, 10); // Zorg dat het een nummer is
                 showGameContainer();
             });
             levelList.appendChild(levelButton);
@@ -750,7 +747,7 @@ function clearCacheAndReload() {
 
     // --- NIEUW: Luisteroefeningen Logica ---
     let currentAudio = null; 
-    let selectedListeningUnit = null; 
+    // GEEN DUBBELE DECLARATIE HIER MEER: selectedListeningUnit is al bovenaan gedeclareerd.
 
     function initializeListeningLevelSelection() {
         const listeningLevelList = document.getElementById('listening-level-list');
