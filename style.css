@@ -76,11 +76,11 @@ body {
 }
 
 /* Niveauscherm Stijlen */
-#level-selection-container h2 {
+#level-selection-container h2, #listening-level-selection-container h2 { /* AANGEPAST: Toepassen op nieuwe container */
     color: #ad1457;
     margin-bottom: 20px;
 }
-#level-list {
+#level-list, #listening-level-list { /* AANGEPAAST: Toepassen op nieuwe container */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 15px;
@@ -131,12 +131,11 @@ body {
 }
 
 /* Zinnenspel Stijlen */
-/* NIEUW: Styling voor Vietnamese vertaling in zinnenspel */
 .vietnamese-translation {
     font-style: italic;
-    color: #757575; /* Een lichtere kleur voor de vertaling */
-    margin-top: -10px; /* Trek het iets omhoog */
-    margin-bottom: 20px; /* Meer ruimte naar de drop-area */
+    color: #757575; 
+    margin-top: -10px; 
+    margin-bottom: 20px; 
     font-size: 1em;
 }
 
@@ -262,8 +261,8 @@ body {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.1s;
-    flex-grow: 1; /* Zorgt ervoor dat knoppen de beschikbare ruimte innemen */
-    min-width: 120px; /* Minimale breedte voor knoppen */
+    flex-grow: 1; 
+    min-width: 120px; 
 }
 
 .listening-btn:hover {
@@ -272,13 +271,13 @@ body {
 }
 
 .listening-btn.active-playing {
-    background-color: #4caf50; /* Groen als audio wordt afgespeeld */
+    background-color: #4caf50; 
 }
 
 /* Responsive aanpassingen voor kleinere schermen */
 @media (max-width: 600px) {
     .listening-btn {
-        flex-grow: unset; /* Haal flex-grow weg op kleine schermen */
-        width: 100%; /* Maak knoppen 100% breed op kleine schermen */
+        flex-grow: unset; 
+        width: 100%; 
     }
 }

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hoc-tieng-anh-cache-v30'; // AANGEPAST: Verhoog de cacheversie
+const CACHE_NAME = 'hoc-tieng-anh-cache-v32'; // AANGEPAST: Verhoog de cacheversie voor Unit 2 audio
 const urlsToCache = [
   './',
   './index.html',
@@ -154,7 +154,7 @@ const urlsToCache = [
   'images/europe.png',
   'images/kualalumpur.png',
   'images/mature.png',
-  // NIEUW: Audiobestanden voor Unit 1 secties
+  // Audiobestanden voor Unit 1 secties
   'audio/unit1_part1_slow.mp3',
   'audio/unit1_part1_fast.mp3',
   'audio/unit1_part2_slow.mp3',
@@ -162,14 +162,23 @@ const urlsToCache = [
   'audio/unit1_part3_slow.mp3',
   'audio/unit1_part3_fast.mp3',
   'audio/unit1_part4_slow.mp3',
-  'audio/unit1_part4_fast.mp3'
+  'audio/unit1_part4_fast.mp3',
+  // NIEUW: Audiobestanden voor Unit 2 secties
+  'audio/unit2_part1_slow.mp3',
+  'audio/unit2_part1_fast.mp3',
+  'audio/unit2_part2_slow.mp3',
+  'audio/unit2_part2_fast.mp3',
+  'audio/unit2_part3_slow.mp3',
+  'audio/unit2_part3_fast.mp3',
+  'audio/unit2_part4_slow.mp3',
+  'audio/unit2_part4_fast.mp3'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache v29'); // AANGEPAST: Log de nieuwe versie
+        console.log('Opened cache v32'); // AANGEPAST: Log de nieuwe versie
         return cache.addAll(urlsToCache);
       })
   );
@@ -182,10 +191,13 @@ self.addEventListener('activate', event => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheWhitelist.indexOf(cacheName) === -1) {
+            console.log('Deleting old cache:', cacheName); // AANGEPAST: Log de verwijderde cache
             return caches.delete(cacheName);
           }
         })
       );
+    }).then(() => {
+        return self.clients.claim(); // AANGEPAST: Zorgt ervoor dat de nieuwe Service Worker onmiddellijk controle overneemt
     })
   );
 });
@@ -194,7 +206,6 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(cachedResponse => {
-        // Altijd netwerk proberen voor externe bronnen (zoals imgur)
         const fetchRequest = event.request.clone();
         const isExternalImage = fetchRequest.url.startsWith('https://i.imgur.com');
 
@@ -202,7 +213,6 @@ self.addEventListener('fetch', event => {
             return fetch(fetchRequest);
         }
 
-        // Cache-first voor lokale bestanden
         if (cachedResponse) {
           return cachedResponse;
         }
