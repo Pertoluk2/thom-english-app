@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hoc-tieng-anh-cache-v32'; // AANGEPAST: Verhoog de cacheversie voor Unit 2 audio
+const CACHE_NAME = 'hoc-tieng-anh-cache-v33'; // AANGEPAST: Verhoog de cacheversie opnieuw
 const urlsToCache = [
   './',
   './index.html',
@@ -178,7 +178,7 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache v32'); // AANGEPAST: Log de nieuwe versie
+        console.log('Opened cache v33'); // AANGEPAST: Log de nieuwe versie
         return cache.addAll(urlsToCache);
       })
   );
@@ -191,13 +191,13 @@ self.addEventListener('activate', event => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheWhitelist.indexOf(cacheName) === -1) {
-            console.log('Deleting old cache:', cacheName); // AANGEPAST: Log de verwijderde cache
+            console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
     }).then(() => {
-        return self.clients.claim(); // AANGEPAST: Zorgt ervoor dat de nieuwe Service Worker onmiddellijk controle overneemt
+        return self.clients.claim();
     })
   );
 });
