@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hoc-tieng-anh-cache-v33'; // AANGEPAST: Verhoog de cacheversie opnieuw
+const CACHE_NAME = 'hoc-tieng-anh-cache-v34'; // AANGEPAST: Cacheversie verhoogd naar v34
 const urlsToCache = [
   './',
   './index.html',
@@ -16,7 +16,7 @@ const urlsToCache = [
   'images/facebook.png',
   'images/sugar.png',
   'images/seat.png',
-  'images/soup.png',
+  // 'images/soup.png', // UITGESCHAKELD: Als deze afbeelding niet bestaat, kan het fouten veroorzaken.
   'images/group.png',
   // NIEUW: Afbeeldingen voor de puzzel toevoegen aan de cache (Unit 1)
   'images/see.png',
@@ -178,7 +178,7 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache v33'); // AANGEPAST: Log de nieuwe versie
+        console.log('Opened cache v34'); // AANGEPAST: Log de nieuwe versie
         return cache.addAll(urlsToCache);
       })
   );

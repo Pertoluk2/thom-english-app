@@ -151,8 +151,8 @@ const scrambledWordList = [
     { correct: "blue", image: "images/blue.png", unit: 1 },
     { correct: "facebook", image: "images/facebook.png", unit: 1 },
     { correct: "sugar", image: "images/sugar.png", unit: 1 },
+    // { correct: "soup", image: "images/soup.png", unit: 1 }, // VERWIJDERD/UITGESCHAKELD: Als deze afbeelding niet bestaat, kan het fouten veroorzaken.
     { correct: "seat", image: "images/seat.png", unit: 1 },
-    { correct: "soup", image: "images/soup.png", unit: 1 }, // Soup is niet op pag 6-20, maar was al aanwezig.
     { correct: "group", image: "images/group.png", unit: 1 },
 
     // Nieuwe puzzels van de opgegeven pagina's
@@ -160,7 +160,7 @@ const scrambledWordList = [
     { correct: "see", image: "images/see.png", unit: 1 },
     { correct: "teacher", image: "images/teacher.png", unit: 1 },
     { correct: "eat", image: "images/eat.png", unit: 1 },
-    { correct: "sleep", image: "images/sleep.png", unit: 1 },
+    { correct: "sleep", image: "images/sleep", unit: 1 }, // Controleer of deze afbeelding bestaat
     { correct: "speak", image: "images/speak.png", unit: 1 },
     { correct: "Vietnamese", image: "images/vietnamese.png", unit: 1 },
     { correct: "feel", image: "images/feel.png", unit: 1 },
@@ -302,7 +302,6 @@ const scrambledWordList = [
         { unit: 1, part: 2, slow: 'audio/unit1_part2_slow.mp3', fast: 'audio/unit1_part2_fast.mp3' },
         { unit: 1, part: 3, slow: 'audio/unit1_part3_slow.mp3', fast: 'audio/unit1_part3_fast.mp3' },
         { unit: 1, part: 4, slow: 'audio/unit1_part4_slow.mp3', fast: 'audio/unit1_part4_fast.mp3' },
-        // NIEUW: Data voor Unit 2 luisteroefeningen
         { unit: 2, part: 1, slow: 'audio/unit2_part1_slow.mp3', fast: 'audio/unit2_part1_fast.mp3' },
         { unit: 2, part: 2, slow: 'audio/unit2_part2_slow.mp3', fast: 'audio/unit2_part2_fast.mp3' },
         { unit: 2, part: 3, slow: 'audio/unit2_part3_slow.mp3', fast: 'audio/unit2_part3_fast.mp3' },
@@ -334,7 +333,6 @@ function clearCacheAndReload() {
     const wordsGameContainer = document.getElementById('words-game-container');
     const sentenceGameContainer = document.getElementById('sentence-game-container');
     const scrambleGameContainer = document.getElementById('scramble-game-container');
-    // AANGEPAST: Nieuwe containers voor listening game
     const listeningLevelSelectionContainer = document.getElementById('listening-level-selection-container');
     const listeningGameContainer = document.getElementById('listening-game-container');
     const currentListeningUnitTitle = document.getElementById('current-listening-unit-title');
@@ -342,7 +340,7 @@ function clearCacheAndReload() {
 
     let selectedLevel = 0; 
     let selectedGameType = '';
-    let selectedListeningUnit = null; // NIEUW: Houdt de geselecteerde luister-unit bij
+    let selectedListeningUnit = null; 
 
     // --- NAVIGATIE ---
     function initializeApp() {
@@ -356,20 +354,17 @@ function clearCacheAndReload() {
         document.getElementById('words-back-btn').addEventListener('click', showLevelSelection);
         document.getElementById('sentences-back-btn').addEventListener('click', showLevelSelection);
         document.getElementById('scramble-back-btn').addEventListener('click', showLevelSelection);
-        // AANGEPAST: Back buttons voor luisteroefeningen
         document.getElementById('listening-level-back-btn').addEventListener('click', showMenu);
         document.getElementById('listening-game-back-btn').addEventListener('click', showListeningLevelSelection);
         
         initializeLevelButtons(); 
         initializeSentenceGame();
         initializeScrambleGame();
-        initializeListeningLevelSelection(); // AANGEPAST: Initialiseer nu de level-selectie voor listening
+        initializeListeningLevelSelection(); 
     }
     
-    // AANGEPAST: selectGameType functie voor luisteroefeningen
     function selectGameType(gameType) {
         selectedGameType = gameType;
-        // Verberg alle spelcontainers eerst
         mainMenu.classList.add('hidden');
         wordsGameContainer.classList.add('hidden');
         sentenceGameContainer.classList.add('hidden');
@@ -379,7 +374,6 @@ function clearCacheAndReload() {
         listeningGameContainer.classList.add('hidden'); 
 
 
-        // Toon de juiste container op basis van het geselecteerde speltype
         if (gameType === 'listening') { 
             showListeningLevelSelection(); 
         } else { 
