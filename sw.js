@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hoc-tieng-anh-cache-v34'; // AANGEPAST: Cacheversie verhoogd naar v35
+const CACHE_NAME = 'hoc-tieng-anh-cache-v36'; // Verhoogd naar v36
 const urlsToCache = [
   './',
   './index.html',
@@ -16,13 +16,13 @@ const urlsToCache = [
   'images/facebook.png',
   'images/sugar.png',
   'images/seat.png',
-  // 'images/soup.png', // UITGESCHAKELD: Als deze afbeelding niet bestaat, kan het fouten veroorzaken.
+  // 'images/soup.png', // UITGESCHAKELD/CONTROLEERD: Zorg dat deze afbeelding bestaat of verwijder deze uit de lijst
   'images/group.png',
   // NIEUW: Afbeeldingen voor de puzzel toevoegen aan de cache (Unit 1)
   'images/see.png',
   'images/teacher.png',
   'images/eat.png',
-  'images/sleep.png',
+  'images/sleep.png', // CONTROLEER: images/sleep.png
   'images/speak.png',
   'images/vietnamese.png',
   'images/feel.png',
@@ -176,10 +176,25 @@ const urlsToCache = [
 
 self.addEventListener('install', event => {
   event.waitUntil(
+    // AANGEPAST: probeert elk bestand apart toe te voegen. Als er één faalt, zal de rest doorgaan.
+    // Dit helpt om de installatie niet te blokkeren door één ontbrekend bestand,
+    // maar het zal nog steeds die ene fout loggen.
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache v34'); // AANGEPAST: Log de nieuwe versie
-        return cache.addAll(urlsToCache);
+        console.log('Opened cache v36'); // AANGEPAST: Log de nieuwe versie
+        const cachePromises = urlsToCache.map(url => {
+          return cache.add(url).catch(error => {
+            console.error(`Failed to cache ${url}:`, error); // Log de specifieke fout
+            // Je kunt hier beslissen of je de Promise laat rejecten of resolven met null
+            // Om de installatie te laten slagen, laten we het hier niet rejecten
+          });
+        });
+        return Promise.all(cachePromises).then(() => {
+            console.log('All cache promises settled.');
+        });
+      })
+      .catch(error => {
+        console.error('Cache open failed:', error);
       })
   );
 });
