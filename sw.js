@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hoc-tieng-anh-cache-v39'; // Verhoogd naar v39
+const CACHE_NAME = 'hoc-tieng-anh-cache-v40'; // AANGEPAST: Cacheversie verhoogd naar v40
 const urlsToCache = [
   './',
   './index.html',
@@ -176,17 +176,12 @@ const urlsToCache = [
 
 self.addEventListener('install', event => {
   event.waitUntil(
-    // AANGEPAST: probeert elk bestand apart toe te voegen. Als er één faalt, zal de rest doorgaan.
-    // Dit helpt om de installatie niet te blokkeren door één ontbrekend bestand,
-    // maar het zal nog steeds die ene fout loggen.
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache v36'); // AANGEPAST: Log de nieuwe versie
+        console.log('Opened cache v40'); // AANGEPAST: Log de nieuwe versie
         const cachePromises = urlsToCache.map(url => {
           return cache.add(url).catch(error => {
-            console.error(`Failed to cache ${url}:`, error); // Log de specifieke fout
-            // Je kunt hier beslissen of je de Promise laat rejecten of resolven met null
-            // Om de installatie te laten slagen, laten we het hier niet rejecten
+            console.error(`Failed to cache ${url}:`, error);
           });
         });
         return Promise.all(cachePromises).then(() => {
