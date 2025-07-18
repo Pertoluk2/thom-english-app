@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hoc-tieng-anh-cache-v37'; // Verhoogd naar v37
+const CACHE_NAME = 'hoc-tieng-anh-cache-v39'; // Verhoogd naar v39
 const urlsToCache = [
   './',
   './index.html',

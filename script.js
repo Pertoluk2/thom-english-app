@@ -160,7 +160,7 @@ const scrambledWordList = [
     { correct: "see", image: "images/see.png", unit: 1 },
     { correct: "teacher", image: "images/teacher.png", unit: 1 },
     { correct: "eat", image: "images/eat.png", unit: 1 },
-    { correct: "sleep", image: "images/sleep.png", unit: 1 }, // AANGEPAST: .png extensie toegevoegd
+    { correct: "sleep", image: "images/sleep.png", unit: 1 }, 
     { correct: "speak", image: "images/speak.png", unit: 1 },
     { correct: "Vietnamese", image: "images/vietnamese.png", unit: 1 },
     { correct: "feel", image: "images/feel.png", unit: 1 },
@@ -340,7 +340,7 @@ function clearCacheAndReload() {
 
     let selectedLevel = 0; 
     let selectedGameType = '';
-    let selectedListeningUnit = null; // Correcte declaratie, bovenaan en maar één keer
+    let selectedListeningUnit = null; 
 
     // --- NAVIGATIE ---
     function initializeApp() {
@@ -462,7 +462,8 @@ function clearCacheAndReload() {
             levelButton.textContent = typeof unit === 'number' ? `Unit ${unit}` : unit; 
             levelButton.dataset.level = unit; 
             levelButton.addEventListener('click', (e) => {
-                selectedLevel = parseInt(e.target.dataset.level, 10); // Zorg dat het een nummer is
+                // AANGEPAST: Converteer alleen naar nummer als het daadwerkelijk een nummer is
+                selectedLevel = typeof unit === 'number' ? parseInt(e.target.dataset.level, 10) : e.target.dataset.level; 
                 showGameContainer();
             });
             levelList.appendChild(levelButton);
@@ -585,7 +586,7 @@ function clearCacheAndReload() {
         });
         
         if (sentencesToPractice.length === 0) {
-            alert("Geen zinnen gevonden voor dit niveau.");
+            alert("Không tìm thấy câu nào cho cấp độ này."); // AANGEPAST: Vertaling van de alert
             showLevelSelection();
             return;
         }
@@ -597,7 +598,7 @@ function clearCacheAndReload() {
         const answerArea = document.getElementById('sentence-answer-area');
         const scrambleArea = document.getElementById('sentence-scramble-area');
         const sentenceFeedback = document.getElementById('sentence-feedback-text');
-        const correctEnglishSentenceEl = document.getElementById('correct-english-sentence'); // NIEUW: Pak het element
+        const correctEnglishSentenceEl = document.getElementById('correct-english-sentence'); 
         const checkBtn = document.getElementById('check-sentence-btn');
         const nextBtn = document.getElementById('next-sentence-btn');
         
@@ -615,7 +616,7 @@ function clearCacheAndReload() {
         scrambleArea.innerHTML = '';
         sentenceFeedback.textContent = '';
         sentenceFeedback.className = 'feedback';
-        correctEnglishSentenceEl.classList.add('hidden'); // NIEUW: Verberg correcte zin bij nieuwe vraag
+        correctEnglishSentenceEl.classList.add('hidden'); 
         
         words.forEach(word => {
             if (word === "") return;
@@ -641,7 +642,7 @@ function clearCacheAndReload() {
     function checkSentenceAnswer() {
         const answerArea = document.getElementById('sentence-answer-area');
         const sentenceFeedback = document.getElementById('sentence-feedback-text');
-        const correctEnglishSentenceEl = document.getElementById('correct-english-sentence'); // NIEUW: Pak het element
+        const correctEnglishSentenceEl = document.getElementById('correct-english-sentence'); 
         const checkBtn = document.getElementById('check-sentence-btn');
         const nextBtn = document.getElementById('next-sentence-btn');
 
@@ -653,7 +654,7 @@ function clearCacheAndReload() {
         if (finalAnswer.trim().toLowerCase() === correctAnswer.trim().toLowerCase()) { 
             sentenceFeedback.textContent = "Chính xác!";
             sentenceFeedback.className = 'feedback correct';
-            correctEnglishSentenceEl.classList.add('hidden'); // NIEUW: Verberg correcte zin als antwoord goed is
+            correctEnglishSentenceEl.classList.add('hidden'); 
             speak(currentSentence);
             checkBtn.classList.add('hidden');
             nextBtn.classList.remove('hidden');
@@ -661,20 +662,15 @@ function clearCacheAndReload() {
             sentenceFeedback.textContent = "Không đúng, thử lại nhé.";
             sentenceFeedback.className = 'feedback incorrect';
             
-            // NIEUW: Toon de correcte zin en spreek deze uit
             correctEnglishSentenceEl.textContent = `Đáp án đúng: ${currentSentence}`;
             correctEnglishSentenceEl.classList.remove('hidden');
-            correctEnglishSentenceEl.classList.add('incorrect'); // Optioneel: geef het een rode kleur
-            speak(currentSentence); // Spreek de correcte zin uit
+            correctEnglishSentenceEl.classList.add('incorrect'); 
+            speak(currentSentence); 
 
             // Laat de feedback en de correcte zin even zien, dan resetten
             setTimeout(() => {
-                // We resetten de feedback en verbergen de correcte zin niet meteen,
-                // zodat Thom de kans krijgt deze te lezen en te beluisteren.
-                // Ze moet op "Câu tiếp theo" klikken om verder te gaan.
-                // Om een nieuwe poging toe te staan zonder op "Next" te klikken,
-                // zouden we dit anders moeten aanpakken, maar dit is een goede start voor leren.
-            }, 3000); // Kan eventueel langer als je wilt
+                // Hier doen we niks meer, zodat de correcte zin blijft staan totdat op "Câu tiếp theo" wordt geklikt
+            }, 3000); 
         }
     }
 
@@ -699,7 +695,7 @@ function clearCacheAndReload() {
         });
 
         if (scrambleToPractice.length === 0) {
-            alert("Geen puzzels gevonden voor dit niveau.");
+            alert("Không tìm thấy câu đố nào cho cấp độ này."); // AANGEPAST: Vertaling van de alert
             showLevelSelection();
             return;
         }
@@ -718,7 +714,7 @@ function clearCacheAndReload() {
         const checkBtn = document.getElementById('check-scramble-btn');
         
         if (currentScrambleIndex >= scrambleToPractice.length) {
-            alert("Super! Alle puzzels gehad. We beginnen opnieuw!");
+            alert("Tuyệt vời! Đã hoàn thành tất cả các câu đố. Chúng ta sẽ bắt đầu lại nhé!"); // AANGEPAST: Vertaling van de alert
             currentScrambleIndex = 0;
             startScrambleGame(); 
             return;
@@ -758,7 +754,7 @@ function clearCacheAndReload() {
             nextBtn.classList.remove('hidden');
             inputEl.disabled = true;
         } else {
-            feedbackEl.textContent = "Không đúng, probeer opnieuw!";
+            feedbackEl.textContent = "Không đúng, thử lại nhé!"; // AANGEPAST: Vertaling
             feedbackEl.className = 'feedback incorrect';
             inputEl.focus();
         }
@@ -766,7 +762,7 @@ function clearCacheAndReload() {
 
     // --- NIEUW: Luisteroefeningen Logica ---
     let currentAudio = null; 
-    // GEEN DUBBELE DECLARATIE HIER MEER: selectedListeningUnit is al bovenaan gedeclareerd.
+    let selectedListeningUnit = null; 
 
     function initializeListeningLevelSelection() {
         const listeningLevelList = document.getElementById('listening-level-list');
