@@ -762,7 +762,7 @@ function clearCacheAndReload() {
 
     // --- NIEUW: Luisteroefeningen Logica ---
     let currentAudio = null; 
-    let selectedListeningUnit = null; 
+    selectedListeningUnit = null; 
 
     function initializeListeningLevelSelection() {
         const listeningLevelList = document.getElementById('listening-level-list');
