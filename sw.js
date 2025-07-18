@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hoc-tieng-anh-cache-v40'; // AANGEPAST: Cacheversie verhoogd naar v40
+const CACHE_NAME = 'hoc-tieng-anh-cache-v41'; // AANGEPAST: Cacheversie verhoogd naar v41
 const urlsToCache = [
   './',
   './index.html',
