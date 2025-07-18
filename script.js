@@ -567,7 +567,7 @@ function clearCacheAndReload() {
         }
     }
 
-    // --- ZINNENSPEL LOGICA (onveranderd) ---
+     // --- ZINNENSPEL LOGICA ---
     let sentencesToPractice = [];
     let currentSentence = "";
     
@@ -597,6 +597,7 @@ function clearCacheAndReload() {
         const answerArea = document.getElementById('sentence-answer-area');
         const scrambleArea = document.getElementById('sentence-scramble-area');
         const sentenceFeedback = document.getElementById('sentence-feedback-text');
+        const correctEnglishSentenceEl = document.getElementById('correct-english-sentence'); // NIEUW: Pak het element
         const checkBtn = document.getElementById('check-sentence-btn');
         const nextBtn = document.getElementById('next-sentence-btn');
         
@@ -614,6 +615,7 @@ function clearCacheAndReload() {
         scrambleArea.innerHTML = '';
         sentenceFeedback.textContent = '';
         sentenceFeedback.className = 'feedback';
+        correctEnglishSentenceEl.classList.add('hidden'); // NIEUW: Verberg correcte zin bij nieuwe vraag
         
         words.forEach(word => {
             if (word === "") return;
@@ -639,6 +641,7 @@ function clearCacheAndReload() {
     function checkSentenceAnswer() {
         const answerArea = document.getElementById('sentence-answer-area');
         const sentenceFeedback = document.getElementById('sentence-feedback-text');
+        const correctEnglishSentenceEl = document.getElementById('correct-english-sentence'); // NIEUW: Pak het element
         const checkBtn = document.getElementById('check-sentence-btn');
         const nextBtn = document.getElementById('next-sentence-btn');
 
@@ -650,12 +653,28 @@ function clearCacheAndReload() {
         if (finalAnswer.trim().toLowerCase() === correctAnswer.trim().toLowerCase()) { 
             sentenceFeedback.textContent = "Chính xác!";
             sentenceFeedback.className = 'feedback correct';
+            correctEnglishSentenceEl.classList.add('hidden'); // NIEUW: Verberg correcte zin als antwoord goed is
             speak(currentSentence);
             checkBtn.classList.add('hidden');
             nextBtn.classList.remove('hidden');
         } else {
             sentenceFeedback.textContent = "Không đúng, thử lại nhé.";
             sentenceFeedback.className = 'feedback incorrect';
+            
+            // NIEUW: Toon de correcte zin en spreek deze uit
+            correctEnglishSentenceEl.textContent = `Đáp án đúng: ${currentSentence}`;
+            correctEnglishSentenceEl.classList.remove('hidden');
+            correctEnglishSentenceEl.classList.add('incorrect'); // Optioneel: geef het een rode kleur
+            speak(currentSentence); // Spreek de correcte zin uit
+
+            // Laat de feedback en de correcte zin even zien, dan resetten
+            setTimeout(() => {
+                // We resetten de feedback en verbergen de correcte zin niet meteen,
+                // zodat Thom de kans krijgt deze te lezen en te beluisteren.
+                // Ze moet op "Câu tiếp theo" klikken om verder te gaan.
+                // Om een nieuwe poging toe te staan zonder op "Next" te klikken,
+                // zouden we dit anders moeten aanpakken, maar dit is een goede start voor leren.
+            }, 3000); // Kan eventueel langer als je wilt
         }
     }
 
